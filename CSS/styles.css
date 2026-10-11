@@ -381,3 +381,342 @@ footer ul {
   outline: 3px solid var(--color-primario);
   outline-offset: 3px;
 }
+
+/* ========================================
+   Sección de testimonios
+======================================== */
+.testimonios {
+  padding: 60px 40px;
+  background-color: var(--color-fondo);
+  text-align: center;
+}
+
+.testimonios h2 {
+  color: var(--color-texto);
+  font-size: 32px;
+  margin: 0 0 12px;
+}
+
+.testimonios > p {
+  color: var(--color-secundario);
+  margin: 0 0 36px;
+}
+
+/* ========================================
+   Distribución de testimonios con CSS Grid
+======================================== */
+.contenedor-testimonios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   Tarjetas individuales de testimonios
+======================================== */
+.testimonio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 24px;
+  background-color: #ffffff;
+  border: 1px solid var(--color-salvia);
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.testimonio p:first-child {
+  font-size: 22px;
+  margin: 0 0 16px;
+}
+
+.testimonio p:nth-of-type(2) {
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 24px;
+  flex-grow: 1;
+}
+
+.testimonio img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+.testimonio h3 {
+  color: var(--color-primario);
+  font-size: 18px;
+  margin: 0 0 6px;
+}
+
+.testimonio p:last-child {
+  color: var(--color-secundario);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ========================================
+   Testimonios en pantallas pequeñas
+======================================== */
+@media (max-width: 768px) {
+  .contenedor-testimonios {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonios {
+    padding: 40px 20px;
+  }
+}
+
+/* ========================================
+   Sección Newsletter
+======================================== */
+.newsletter {
+  padding: 60px 40px;
+  background-color: var(--color-primario);
+  color: #ffffff;
+  text-align: center;
+}
+
+.newsletter h2 {
+  font-size: 32px;
+  margin: 0 0 12px;
+}
+
+.newsletter > p {
+  font-size: 16px;
+  margin: 0 0 30px;
+  line-height: 1.5;
+}
+
+/* ========================================
+   Formulario del Newsletter
+======================================== */
+.newsletter form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 12px;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.newsletter label {
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.newsletter input {
+  flex: 1 1 260px;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--color-salvia);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.newsletter button {
+  padding: 14px 28px;
+  background-color: var(--color-acento);
+  color: #ffffff;
+  border: 1px solid var(--color-acento);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.newsletter button:hover {
+  background-color: #004c99;
+}
+
+.newsletter input:focus-visible,
+.newsletter button:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* ========================================
+   Newsletter en dispositivos móviles
+======================================== */
+@media (max-width: 600px) {
+  .newsletter {
+    padding: 40px 20px;
+  }
+
+  .newsletter form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .newsletter input {
+    flex: 0 1 auto;
+    width: 100%;
+  }
+
+  .newsletter button {
+    width: 100%;
+  }
+}
+
+/* ========================================
+   Footer: distribución con CSS Grid
+======================================== */
+.footer-contenido {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   Títulos y textos del footer
+======================================== */
+.footer-contenido h3 {
+  color: #ffffff;
+  font-size: 20px;
+  margin: 0 0 20px;
+}
+
+.footer-contenido p {
+  color: #dddddd;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+
+/* ========================================
+   Enlaces del footer
+======================================== */
+.footer-contenido ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-contenido li {
+  margin-bottom: 12px;
+}
+
+.footer-contenido a {
+  color: #dddddd;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer-contenido a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* ========================================
+   Imágenes de descarga de aplicaciones
+======================================== */
+.footer-app-imagenes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0 24px;
+}
+
+.footer-app-imagenes img {
+  width: 130px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+/* ========================================
+   Medios de pago
+======================================== */
+.footer-contenido .footer-pagos-titulo {
+  margin-bottom: 12px;
+}
+
+.footer-pagos {
+  width: 190px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ========================================
+   Derechos de autor
+======================================== */
+.footer-copyright {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid #555555;
+  color: #cccccc;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ========================================
+   Footer responsive
+======================================== */
+@media (max-width: 768px) {
+  .footer-contenido {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  footer {
+    padding: 40px 20px;
+  }
+
+  .footer-copyright {
+    margin-top: 30px;
+  }
+}
+
+/* ========================================
+   Redes sociales del Footer
+======================================== */
+.footer-redes {
+  margin-top: 24px;
+}
+
+.footer-redes h4 {
+  color: #ffffff;
+  font-size: 16px;
+  margin: 0 0 14px;
+}
+
+.footer-redes-iconos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-redes-iconos a {
+  color: var(--color-salvia);
+  font-size: 20px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-redes-iconos a:hover {
+  color: #ffffff;
+}
+
+.footer-redes-iconos a:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 5px;
+}
