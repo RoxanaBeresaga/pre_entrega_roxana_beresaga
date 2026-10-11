@@ -1,0 +1,144 @@
+
+/* ========================================
+   Variables y paleta de colores
+======================================== */
+:root {
+  --color-primario: #315b70;
+  --color-secundario: #6c7898;
+  --color-acento: #0066cc;
+  --color-fondo: #faf9f6;
+  --color-texto: #333333;
+  --color-salvia: #ddede4;
+  --color-lavanda: #eae4f5;
+  --color-rosa: #f7e5e7;
+}
+
+/* ========================================
+   Estilos generales
+======================================== */
+body {
+  margin: 0;
+  font-family: "Roboto", Arial, sans-serif;
+  background-color: #ffffff;
+  color: var(--color-texto);
+}
+
+/* ========================================
+   Encabezado y navegación
+======================================== */
+header {
+  background-color: var(--color-primario);
+  padding: 20px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* ========================================
+   Pie de página
+======================================== */
+footer {
+  background-color: #333333;
+  color: #ffffff;
+  padding: 30px;
+}
+
+footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* ========================================
+   Hero: imagen de fondo y contenido
+======================================== */
+.hero {
+  background-color: var(--color-fondo);
+  background-image: url("../img/banner/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  width: 100%;
+  min-height: 550px;
+  padding: 40px 60px;
+  box-sizing: border-box;
+}
+
+/* Contenedor del contenido promocional */
+.hero-content {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* Título principal */
+.hero-content h1 {
+  color: var(--color-primario);
+  font-size: 36px;
+}
+
+/* Texto descriptivo */
+.hero-content p {
+  color: var(--color-texto);
+}
+
+/* Texto destacado de la promoción */
+.hero-content .hero-oferta {
+  color: var(--color-secundario);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* Texto introductorio */
+.hero-content .hero-subtitulo {
+  color: var(--color-primario);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ========================================
+   Botón principal de compra
+======================================== */
+.boton-comprar {
+  display: inline-block;
+  background-color: var(--color-acento);
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Estado al pasar el cursor */
+.boton-comprar:hover {
+  background-color: #004c99;
+}
+
+/* Indicador de foco para navegación por teclado */
+.boton-comprar:focus-visible {
+  outline: 3px solid var(--color-primario);
+  outline-offset: 3px;
+}
