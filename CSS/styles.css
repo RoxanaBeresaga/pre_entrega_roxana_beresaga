@@ -63,7 +63,6 @@ nav a {
   display: block;
 }
 
-/* Logo de la tienda */
 .logo-enlace {
   display: flex;
   align-items: center;
@@ -132,7 +131,6 @@ footer ul {
 /* ========================================
    Textos del banner principal
 ======================================== */
-
 .hero-content .hero-subtitulo {
   color: var(--color-primario);
   font-size: 16px;
@@ -185,6 +183,201 @@ footer ul {
 
 /* Indicador de foco para navegación por teclado */
 .boton-comprar:focus-visible {
+  outline: 3px solid var(--color-primario);
+  outline-offset: 3px;
+}
+
+/* ========================================
+   Sección de productos
+======================================== */
+.productos {
+  padding: 60px 40px;
+  text-align: center;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.productos h2 {
+  color: var(--color-texto);
+  font-size: 32px;
+  margin: 0 0 12px;
+}
+
+.productos > p {
+  color: var(--color-secundario);
+  margin: 0 0 36px;
+}
+
+/* ========================================
+   Distribución de tarjetas con Flexbox
+======================================== */
+.contenedor-productos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   Tarjetas individuales
+======================================== */
+.producto {
+  flex: 0 1 calc((100% - 72px) / 4);
+  min-width: 0;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  padding: 12px;
+  border: 1px solid var(--color-salvia);
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.producto img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.producto h3 {
+  color: var(--color-texto);
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.producto p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+/* Precio del producto */
+.producto p:nth-of-type(2) {
+  color: var(--color-primario);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* ========================================
+   Botón Agregar
+======================================== */
+.producto button {
+  margin-top: auto;
+  padding: 10px 16px;
+
+  background-color: var(--color-acento);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.producto button:hover {
+  background-color: #004c99;
+}
+
+.producto button:focus-visible {
+  outline: 3px solid var(--color-primario);
+  outline-offset: 3px;
+}
+
+/* ========================================
+   Banner promocional secundario
+======================================== */
+.banner-promocional {
+  background-image: url("../img/banner_promocional.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  min-height: 280px;
+  padding: 40px 24px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  text-align: center;
+}
+
+/* ========================================
+   Contenido del banner promocional
+======================================== */
+.banner-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  max-width: 850px;
+  padding: 28px 40px;
+  box-sizing: border-box;
+
+  background-color: rgba(250, 249, 246, 0.94);
+  border-radius: 12px;
+}
+
+/* Texto introductorio */
+.banner-subtitulo {
+  color: var(--color-primario);
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Descuento principal */
+.banner-promocional h2 {
+  color: var(--color-texto);
+  font-size: 36px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.banner-promocional h2 span {
+  color: var(--color-acento);
+  font-size: 42px;
+}
+
+/* Categorías de la promoción */
+.banner-categorias {
+  color: var(--color-primario);
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Enlace de la promoción */
+.banner-boton {
+  display: inline-block;
+  background-color: var(--color-acento);
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.banner-boton:hover {
+  background-color: #004c99;
+}
+
+.banner-boton:focus-visible {
   outline: 3px solid var(--color-primario);
   outline-offset: 3px;
 }
