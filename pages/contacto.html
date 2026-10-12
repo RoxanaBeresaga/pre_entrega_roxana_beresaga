@@ -1,47 +1,202 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contacto | Talento Lab Ecommerce</title>
-    <link rel="stylesheet" href="../CSS/styles.css">
+
+    <link rel="stylesheet" href="../CSS/styles.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
-</head>
-<body>
-    <header>
-        <nav>
-             <a href="../index.html">Home</a>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <h1>Contacto</h1>
-            <p>Completá el formulario para enviarnos tu consulta.</p>
-            <form action="https://formspree.io/f/xwlvbwqn" method="POST">
-                <div>
-                    <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" required>
-                </div>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
-                <div>
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div>
-                    <label for="mensaje">Mensaje</label>
-                    <textarea name="mensaje" id="mensaje" rows="5" required></textarea>
-                </div>
-                <button type="submit">Enviar mensaje</button>
-            </form>
-            <p>
-            <a href="../index.html">← Volver al inicio</a>
-            </p>
-        </section>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body class="pagina-contacto">
+    <header>
+      <nav class="navbar">
+        <a
+          href="../index.html"
+          class="logo-enlace"
+          aria-label="Talento Lab - Inicio"
+        >
+          <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+        </a>
+
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#productos">Tienda</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Acerca de</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li>
+            <a href="#" aria-label="Bolsa de compras">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="contacto-main">
+      <section class="contacto-seccion">
+        <h1>Contacto</h1>
+        <p>Completá el formulario para enviarnos tu consulta.</p>
+
+        <form
+          class="contacto-formulario"
+          action="https://formspree.io/f/xwlvbwqn"
+          method="POST"
+        >
+          <div class="contacto-campo">
+            <label for="nombre">Nombre</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              required
+            />
+          </div>
+
+          <div class="contacto-campo">
+            <label for="email">Correo electrónico</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+            />
+          </div>
+
+          <div class="contacto-campo">
+            <label for="mensaje">Mensaje</label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit">Enviar mensaje</button>
+        </form>
+
+        <p class="contacto-volver">
+          <a href="../index.html">← Volver a la tienda</a>
+        </p>
+      </section>
     </main>
+
     <footer>
-        <p>&copy; 2026 Talento Lab Ecommerce</p>
+      <div class="footer-contenido">
+        <div>
+          <h3>Contacto</h3>
+          <p>
+            Dirección: Av. Siemprevivo 742, Ciudad Autónoma de Buenos Aires
+          </p>
+          <p>Teléfono: +54 11 1234 5678</p>
+          <p>Horario: 9:00 - 18:00, Lunes a Viernes</p>
+
+          <div class="footer-redes">
+            <h4>Seguinos</h4>
+
+            <div class="footer-redes-iconos">
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+
+              <a
+                href="https://www.twitter.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+              >
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+
+              <a
+                href="https://www.pinterest.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Pinterest"
+              >
+                <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+              </a>
+
+              <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+              >
+                <i class="fa fa-youtube-play" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3>Mi Cuenta</h3>
+          <ul>
+            <li><a href="#">Iniciar Sesión</a></li>
+            <li><a href="#">Ver Carrito</a></li>
+            <li><a href="#">Mis Favoritos</a></li>
+            <li><a href="#">Seguimiento de Pedido</a></li>
+            <li><a href="#">Ayuda</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-app">
+          <h3>Descargá la App</h3>
+          <p>Desde App Store o Google Play</p>
+
+          <div class="footer-app-imagenes">
+            <img
+              src="../img/pay/app_store.jpg"
+              alt="Disponible en App Store"
+            />
+            <img
+              src="../img/pay/google_play.jpg"
+              alt="Disponible en Google Play"
+            />
+          </div>
+
+          <p class="footer-pagos-titulo">Pasarelas de pago seguras</p>
+
+          <img
+            class="footer-pagos"
+            src="../img/pay/payment.png"
+            alt="Medios de pago: Visa, Mastercard, Maestro y American Express"
+          />
+        </div>
+      </div>
+
+      <p class="footer-copyright">
+        &copy; 2026 Roxana Beresaga | Talento Tech - Ecommerce
+      </p>
     </footer>
-</body>
+  </body>
 </html>

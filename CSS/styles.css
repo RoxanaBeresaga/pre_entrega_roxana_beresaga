@@ -776,3 +776,126 @@ Responsive: celulares
     width: 100%;
   }
 }
+
+
+/* ========================================
+   Página de Contacto
+======================================== */
+
+.pagina-contacto {
+  background-color: var(--color-fondo);
+}
+
+.pagina-contacto .contacto-main {
+  padding: 60px 20px;
+}
+
+.pagina-contacto .contacto-seccion {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid var(--color-salvia);
+  border-radius: 12px;
+}
+
+.pagina-contacto .contacto-seccion h1 {
+  color: var(--color-primario);
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.pagina-contacto .contacto-seccion > p {
+  line-height: 1.5;
+  margin-bottom: 28px;
+}
+
+/* Formulario */
+.pagina-contacto .contacto-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pagina-contacto .contacto-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pagina-contacto .contacto-campo label {
+  font-weight: 500;
+}
+
+.pagina-contacto .contacto-campo input,
+.pagina-contacto .contacto-campo textarea {
+  width: 100%;
+  padding: 12px 14px;
+  box-sizing: border-box;
+  border: 1px solid #b8c6cc;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.pagina-contacto .contacto-campo textarea {
+  resize: vertical;
+}
+
+.pagina-contacto .contacto-campo input:focus-visible,
+.pagina-contacto .contacto-campo textarea:focus-visible {
+  outline: 2px solid var(--color-acento);
+  outline-offset: 2px;
+}
+
+/* Botón principal */
+.pagina-contacto .contacto-formulario button {
+  padding: 14px 24px;
+  background-color: var(--color-acento);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pagina-contacto .contacto-formulario button:hover {
+  background-color: #004c99;
+}
+
+/* Enlace secundario */
+.pagina-contacto .contacto-seccion .contacto-volver {
+  margin: 28px 0 0;
+  text-align: center;
+}
+
+.pagina-contacto .contacto-volver a {
+  color: var(--color-primario);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.pagina-contacto .contacto-volver a:hover {
+  text-decoration: underline;
+}
+
+/* ========================================
+   Contacto responsive: celulares
+======================================== */
+
+@media (max-width: 600px) {
+  .pagina-contacto .contacto-main {
+    padding: 30px 16px;
+  }
+
+  .pagina-contacto .contacto-seccion {
+    padding: 24px 20px;
+  }
+
+  .pagina-contacto .contacto-seccion h1 {
+    font-size: 28px;
+  }
+}
