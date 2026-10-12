@@ -1,6 +1,5 @@
-
 /* ========================================
-   Variables y paleta de colores
+Variables y paleta de colores
 ======================================== */
 :root {
   --color-primario: #315b70;
@@ -12,9 +11,8 @@
   --color-lavanda: #eae4f5;
   --color-rosa: #f7e5e7;
 }
-
 /* ========================================
-   Estilos generales
+Estilos generales
 ======================================== */
 body {
   margin: 0;
@@ -22,39 +20,33 @@ body {
   background-color: #ffffff;
   color: var(--color-texto);
 }
-
 /* ========================================
-   Encabezado y navegación
+Encabezado y navegación
 ======================================== */
 header {
   background-color: var(--color-primario);
   padding: 18px 24px;
 }
-
 /* Distribución del encabezado */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 24px;
 }
-
 nav a {
   color: #ffffff;
   text-decoration: none;
   font-weight: 500;
 }
-
 /* Logo de la tienda */
 .logo {
   width: 40px;
@@ -62,7 +54,6 @@ nav a {
   object-fit: contain;
   display: block;
 }
-
 .logo-enlace {
   display: flex;
   align-items: center;
@@ -71,33 +62,28 @@ nav a {
   font-size: 28px;
   text-decoration: none;
 }
-
 /* Carrito de compras */
 .fa-shopping-cart {
   font-size: 20px;
 }
-
 /* ========================================
-   Pie de página
+Pie de página
 ======================================== */
 footer {
   background-color: #333333;
   color: #ffffff;
   padding: 30px;
 }
-
 footer a {
   color: #ffffff;
   text-decoration: none;
 }
-
 footer ul {
   list-style: none;
   padding: 0;
 }
-
 /* ========================================
-   Hero: imagen de fondo y contenido
+Hero: imagen de fondo y contenido
 ======================================== */
 .hero {
   background-color: var(--color-fondo);
@@ -105,19 +91,16 @@ footer ul {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
   display: flex;
   align-items: center;
   justify-content: flex-end;
-
   width: 100%;
   height: 700px;
   padding: 40px 60px;
   box-sizing: border-box;
 }
-
 /* ========================================
-   Contenedor del contenido promocional
+Contenedor del contenido promocional
 ======================================== */
 .hero-content {
   width: 40%;
@@ -127,9 +110,8 @@ footer ul {
   text-align: right;
   gap: 10px;
 }
-
 /* ========================================
-   Textos del banner principal
+Textos del banner principal
 ======================================== */
 .hero-content .hero-subtitulo {
   color: var(--color-primario);
@@ -137,29 +119,25 @@ footer ul {
   font-weight: 700;
   margin: 0;
 }
-
 .hero-content .hero-oferta {
   color: var(--color-texto);
   font-size: 30px;
   font-weight: 700;
   margin: 0;
 }
-
 .hero-content h1 {
   color: var(--color-primario);
   font-size: 34px;
   line-height: 1.2;
   margin: 0;
 }
-
 .hero-content p {
   color: var(--color-texto);
   margin: 0;
   line-height: 1.5;
 }
-
 /* ========================================
-   Botón principal de compra
+Botón principal de compra
 ======================================== */
 .boton-comprar {
   display: inline-block;
@@ -175,20 +153,17 @@ footer ul {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 /* Estado al pasar el cursor */
 .boton-comprar:hover {
   background-color: #004c99;
 }
-
 /* Indicador de foco para navegación por teclado */
 .boton-comprar:focus-visible {
   outline: 3px solid var(--color-primario);
   outline-offset: 3px;
 }
-
 /* ========================================
-   Sección de productos
+Sección de productos
 ======================================== */
 .productos {
   padding: 60px 40px;
@@ -196,20 +171,17 @@ footer ul {
   background-color: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
-
 .productos h2 {
   color: var(--color-texto);
   font-size: 32px;
   margin: 0 0 12px;
 }
-
 .productos > p {
   color: var(--color-secundario);
   margin: 0 0 36px;
 }
-
 /* ========================================
-   Distribución de tarjetas con Flexbox
+Distribución de tarjetas con Flexbox
 ======================================== */
 .contenedor-productos {
   display: flex;
@@ -219,115 +191,95 @@ footer ul {
   max-width: 1200px;
   margin: 0 auto;
 }
-
 /* ========================================
-   Tarjetas individuales
+Tarjetas individuales
 ======================================== */
 .producto {
   flex: 0 1 calc((100% - 72px) / 4);
   min-width: 0;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
   text-align: left;
-
   padding: 12px;
   border: 1px solid var(--color-salvia);
   border-radius: 12px;
   background-color: #ffffff;
 }
-
 .producto img {
   width: 100%;
   height: 200px;
   object-fit: contain;
   border-radius: 8px;
 }
-
 .producto h3 {
   color: var(--color-texto);
   font-size: 16px;
   margin: 8px 0;
 }
-
 .producto p {
   margin: 6px 0;
   font-size: 14px;
 }
-
 /* Precio del producto */
 .producto p:nth-of-type(2) {
   color: var(--color-primario);
   font-size: 18px;
   font-weight: 700;
 }
-
 /* ========================================
-   Botón Agregar
+Botón Agregar
 ======================================== */
 .producto button {
   margin-top: auto;
   padding: 10px 16px;
-
   background-color: var(--color-acento);
   color: #ffffff;
   border: none;
   border-radius: 6px;
-
   font-family: inherit;
   font-weight: 700;
   cursor: pointer;
 }
-
 .producto button:hover {
   background-color: #004c99;
 }
-
 .producto button:focus-visible {
   outline: 3px solid var(--color-primario);
   outline-offset: 3px;
 }
-
 /* ========================================
-   Banner promocional secundario
+Banner promocional secundario
 ======================================== */
 .banner-promocional {
   background-image: url("../img/banner_promocional.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
   min-height: 280px;
   padding: 40px 24px;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 14px;
-
   text-align: center;
 }
-
 /* ========================================
-   Contenido del banner promocional
+Contenido del banner promocional
 ======================================== */
 .banner-contenido {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
-
   max-width: 850px;
   padding: 28px 40px;
   box-sizing: border-box;
-
   background-color: rgba(250, 249, 246, 0.94);
   border-radius: 12px;
 }
-
 /* Texto introductorio */
 .banner-subtitulo {
   color: var(--color-primario);
@@ -335,7 +287,6 @@ footer ul {
   font-weight: 700;
   margin: 0;
 }
-
 /* Descuento principal */
 .banner-promocional h2 {
   color: var(--color-texto);
@@ -343,12 +294,10 @@ footer ul {
   line-height: 1.2;
   margin: 0;
 }
-
 .banner-promocional h2 span {
   color: var(--color-acento);
   font-size: 42px;
 }
-
 /* Categorías de la promoción */
 .banner-categorias {
   color: var(--color-primario);
@@ -356,7 +305,6 @@ footer ul {
   font-weight: 500;
   margin: 0;
 }
-
 /* Enlace de la promoción */
 .banner-boton {
   display: inline-block;
@@ -372,38 +320,32 @@ footer ul {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 .banner-boton:hover {
   background-color: #004c99;
 }
-
 .banner-boton:focus-visible {
   outline: 3px solid var(--color-primario);
   outline-offset: 3px;
 }
-
 /* ========================================
-   Sección de testimonios
+Sección de testimonios
 ======================================== */
 .testimonios {
   padding: 60px 40px;
   background-color: var(--color-fondo);
   text-align: center;
 }
-
 .testimonios h2 {
   color: var(--color-texto);
   font-size: 32px;
   margin: 0 0 12px;
 }
-
 .testimonios > p {
   color: var(--color-secundario);
   margin: 0 0 36px;
 }
-
 /* ========================================
-   Distribución de testimonios con CSS Grid
+Distribución de testimonios con CSS Grid
 ======================================== */
 .contenedor-testimonios {
   display: grid;
@@ -412,9 +354,8 @@ footer ul {
   max-width: 1200px;
   margin: 0 auto;
 }
-
 /* ========================================
-   Tarjetas individuales de testimonios
+Tarjetas individuales de testimonios
 ======================================== */
 .testimonio {
   display: flex;
@@ -426,19 +367,16 @@ footer ul {
   border-radius: 12px;
   box-sizing: border-box;
 }
-
 .testimonio p:first-child {
   font-size: 22px;
   margin: 0 0 16px;
 }
-
 .testimonio p:nth-of-type(2) {
   font-size: 15px;
   line-height: 1.6;
   margin: 0 0 24px;
   flex-grow: 1;
 }
-
 .testimonio img {
   width: 70px;
   height: 70px;
@@ -446,34 +384,22 @@ footer ul {
   border-radius: 50%;
   margin-bottom: 12px;
 }
-
 .testimonio h3 {
   color: var(--color-primario);
   font-size: 18px;
   margin: 0 0 6px;
 }
-
 .testimonio p:last-child {
   color: var(--color-secundario);
   font-size: 14px;
   margin: 0;
 }
-
 /* ========================================
-   Testimonios en pantallas pequeñas
+Testimonios en pantallas pequeñas
 ======================================== */
-@media (max-width: 768px) {
-  .contenedor-testimonios {
-    grid-template-columns: 1fr;
-  }
-
-  .testimonios {
-    padding: 40px 20px;
-  }
-}
 
 /* ========================================
-   Sección Newsletter
+Sección Newsletter
 ======================================== */
 .newsletter {
   padding: 60px 40px;
@@ -481,20 +407,17 @@ footer ul {
   color: #ffffff;
   text-align: center;
 }
-
 .newsletter h2 {
   font-size: 32px;
   margin: 0 0 12px;
 }
-
 .newsletter > p {
   font-size: 16px;
   margin: 0 0 30px;
   line-height: 1.5;
 }
-
 /* ========================================
-   Formulario del Newsletter
+Formulario del Newsletter
 ======================================== */
 .newsletter form {
   display: flex;
@@ -505,14 +428,12 @@ footer ul {
   max-width: 650px;
   margin: 0 auto;
 }
-
 .newsletter label {
   width: 100%;
   text-align: left;
   font-size: 14px;
   font-weight: 500;
 }
-
 .newsletter input {
   flex: 1 1 260px;
   min-width: 0;
@@ -523,7 +444,6 @@ footer ul {
   font-size: 16px;
   box-sizing: border-box;
 }
-
 .newsletter button {
   padding: 14px 28px;
   background-color: var(--color-acento);
@@ -536,42 +456,20 @@ footer ul {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 .newsletter button:hover {
   background-color: #004c99;
 }
-
 .newsletter input:focus-visible,
 .newsletter button:focus-visible {
   outline: 3px solid #ffffff;
   outline-offset: 3px;
 }
-
 /* ========================================
-   Newsletter en dispositivos móviles
+Newsletter en dispositivos móviles
 ======================================== */
-@media (max-width: 600px) {
-  .newsletter {
-    padding: 40px 20px;
-  }
-
-  .newsletter form {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .newsletter input {
-    flex: 0 1 auto;
-    width: 100%;
-  }
-
-  .newsletter button {
-    width: 100%;
-  }
-}
 
 /* ========================================
-   Footer: distribución con CSS Grid
+Footer: distribución con CSS Grid
 ======================================== */
 .footer-contenido {
   display: grid;
@@ -580,50 +478,43 @@ footer ul {
   max-width: 1200px;
   margin: 0 auto;
 }
-
 /* ========================================
-   Títulos y textos del footer
+Títulos y textos del footer
 ======================================== */
 .footer-contenido h3 {
   color: #ffffff;
   font-size: 20px;
   margin: 0 0 20px;
 }
-
 .footer-contenido p {
   color: #dddddd;
   font-size: 14px;
   line-height: 1.7;
   margin: 0 0 12px;
 }
-
 /* ========================================
-   Enlaces del footer
+Enlaces del footer
 ======================================== */
 .footer-contenido ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 .footer-contenido li {
   margin-bottom: 12px;
 }
-
 .footer-contenido a {
   color: #dddddd;
   text-decoration: none;
   font-size: 14px;
   transition: color 0.3s ease;
 }
-
 .footer-contenido a:hover {
   color: #ffffff;
   text-decoration: underline;
 }
-
 /* ========================================
-   Imágenes de descarga de aplicaciones
+Imágenes de descarga de aplicaciones
 ======================================== */
 .footer-app-imagenes {
   display: flex;
@@ -631,7 +522,6 @@ footer ul {
   gap: 10px;
   margin: 16px 0 24px;
 }
-
 .footer-app-imagenes img {
   width: 130px;
   max-width: 100%;
@@ -639,23 +529,20 @@ footer ul {
   object-fit: contain;
   border-radius: 4px;
 }
-
 /* ========================================
-   Medios de pago
+Medios de pago
 ======================================== */
 .footer-contenido .footer-pagos-titulo {
   margin-bottom: 12px;
 }
-
 .footer-pagos {
   width: 190px;
   max-width: 100%;
   height: auto;
   display: block;
 }
-
 /* ========================================
-   Derechos de autor
+Derechos de autor
 ======================================== */
 .footer-copyright {
   max-width: 1200px;
@@ -666,118 +553,116 @@ footer ul {
   font-size: 14px;
   text-align: center;
 }
-
 /* ========================================
-   Footer responsive
+Footer responsive
 ======================================== */
-@media (max-width: 768px) {
-  .footer-contenido {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  footer {
-    padding: 40px 20px;
-  }
-
-  .footer-copyright {
-    margin-top: 30px;
-  }
-}
 
 /* ========================================
-   Redes sociales del Footer
+Redes sociales del Footer
 ======================================== */
 .footer-redes {
   margin-top: 24px;
 }
-
 .footer-redes h4 {
   color: #ffffff;
   font-size: 16px;
   margin: 0 0 14px;
 }
-
 .footer-redes-iconos {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
 }
-
 .footer-redes-iconos a {
   color: var(--color-salvia);
   font-size: 20px;
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
 .footer-redes-iconos a:hover {
   color: #ffffff;
 }
-
 .footer-redes-iconos a:focus-visible {
   outline: 2px solid #ffffff;
   outline-offset: 5px;
 }
-
 /* Imagen completa, sin textos encima */
 .hero-imagen-mobile {
-  display: block;
+  display: none;
   width: 100%;
   aspect-ratio: 16 / 9;
-
   background-image: url("../img/banner/banner.jpg");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
+/* ========================================
+Responsive: tablets y pantallas medianas
+======================================== */
+
+/* ========================================
+Responsive: celulares
+======================================== */
 
 /* ========================================
    Responsive: tablets y pantallas medianas
 ======================================== */
 @media (max-width: 1024px) {
-  /* Encabezado */
   .navbar {
     flex-wrap: wrap;
     justify-content: center;
     gap: 16px;
   }
-
   nav ul {
     flex-wrap: wrap;
     justify-content: center;
     gap: 16px;
   }
-
-  /* Hero */
+  /* Misma composición del hero que en escritorio */
   .hero {
     height: 550px;
     padding: 30px;
   }
-
-  /* Promoción debajo de la fotografía */
   .hero-content {
-    width: 100%;
-    max-width: none;
-    padding: 28px 20px;
-    box-sizing: border-box;
+  width: 40%;
+  min-width: 0;
+  align-items: flex-end;
+  text-align: right;
+  }
 
-    background-color: var(--color-fondo);
-    border-radius: 0;
-
-    align-items: center;
-    text-align: center;
-    gap: 10px;
+  .hero-content h1,
+  .hero-content p {
+  max-width: 100%;
   }
 
   .hero-content h1 {
     font-size: 28px;
   }
-
-  /* Productos: dos columnas */
   .producto {
     flex: 0 1 calc((100% - 24px) / 2);
+  }
+}
+
+/* ========================================
+   Responsive: tablets pequeñas
+======================================== */
+@media (max-width: 768px) {
+  .contenedor-testimonios {
+    grid-template-columns: 1fr;
+  }
+  .testimonios {
+    padding: 40px 20px;
+  }
+  .footer-contenido {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  footer {
+    padding: 40px 20px;
+  }
+  .footer-copyright {
+    margin-top: 30px;
   }
 }
 
@@ -785,22 +670,16 @@ footer ul {
    Responsive: celulares
 ======================================== */
 @media (max-width: 600px) {
-  /* Evitar desbordamientos de imágenes */
   img {
     max-width: 100%;
   }
-
-  /* Encabezado */
   header {
     padding: 14px 12px;
   }
-
   .navbar {
     flex-direction: column;
     gap: 12px;
   }
-
-  /* Logo más pequeño en celulares */
   .logo-enlace {
     font-size: 22px;
   }
@@ -808,98 +687,92 @@ footer ul {
     justify-content: center;
     gap: 12px 16px;
   }
-
   nav a {
     font-size: 14px;
   }
-
-  /* Hero: conservar la imagen como fondo */
+  /* Foto arriba y promoción abajo, sin superposición */
   .hero {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-
     width: 100%;
     height: auto;
     min-height: 0;
     padding: 0;
-
     background-image: none;
     background-color: var(--color-fondo);
   }
-
+  .hero-imagen-mobile {
+    display: block;
+  }
   .hero-content {
-  width: 100%;
-  max-width: 340px;
-  padding: 18px 16px;
-  box-sizing: border-box;
-
-  background-color: rgba(250, 249, 246, 0.92);
-  border-radius: 12px;
-
-  align-items: center;
-  text-align: center;
-  gap: 8px;
-  } 
-
-  .hero-content .hero-oferta {
-    font-size: 24px;
+    width: 100%;
+    max-width: none;
+    padding: 28px 20px;
+    box-sizing: border-box;
+    background-color: var(--color-fondo);
+    border-radius: 0;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
   }
-
-  .hero-content h1 {
-  font-size: 26px;
-  line-height: 1.2;
-  }
-
   .hero-content .hero-subtitulo {
     font-size: 15px;
   }
-
-  /* Productos: una columna */
+  .hero-content .hero-oferta {
+    font-size: 24px;
+  }
+  .hero-content h1 {
+    font-size: 26px;
+    line-height: 1.2;
+  }
   .productos {
     padding: 40px 20px;
   }
-
   .productos h2 {
     font-size: 28px;
   }
-
   .contenedor-productos {
     gap: 20px;
   }
-
   .producto {
     flex: 0 1 100%;
     max-width: 420px;
   }
-
-  /* Banner promocional */
   .banner-promocional {
     min-height: 320px;
     padding: 30px 16px;
   }
-
   .banner-contenido {
     width: 100%;
     padding: 24px 16px;
   }
-
   .banner-promocional h2 {
     font-size: 28px;
   }
-
   .banner-promocional h2 span {
     font-size: 34px;
   }
-
   .banner-categorias {
     font-size: 16px;
   }
-
-  /* Títulos */
   .testimonios h2,
   .newsletter h2 {
     font-size: 28px;
+  }
+  .newsletter {
+    padding: 40px 20px;
+  }
+  .newsletter form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .newsletter input {
+    flex: 0 1 auto;
+    width: 100%;
+  }
+  .newsletter button {
+    width: 100%;
   }
 }
