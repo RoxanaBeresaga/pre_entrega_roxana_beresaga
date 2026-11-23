@@ -1,62 +1,64 @@
-
-const productos = [
-  {
-    id: 1,
-    nombre: "Smartphone",
-    precio: 350000,
-    categoria: "Celulares"
-  },
-  {
-    id: 2,
-    nombre: "Auriculares",
-    precio: 45000,
-    categoria: "Audio"
-  },
-  {
-    id: 3,
-    nombre: "Pantalón estampado",
-    precio: 38000,
-    categoria: "Moda"
-  }
-];
-
+const API_URL = "https://6b049df0db01cf463607720c.mockapi.io/productos";
 
 const contenedorProductos = document.querySelector(".contenedor-productos");
 
-productos.forEach((producto) => {
-  const tarjeta = document.createElement("article");
+async function cargarProductos() {
+  try {
+    const respuesta = await fetch(API_URL);
 
-  tarjeta.classList.add("producto");
+    if (!respuesta.ok) {
+      throw new Error("Error al obtener los productos");
+    }
 
-  tarjeta.innerHTML = `
-    <h3>${producto.nombre}</h3>
-    <p>Categoría: ${producto.categoria}</p>
-    <p>Precio: $${producto.precio.toLocaleString("es-AR")}</p>
-    <button class="btn-agregar" data-id="${producto.id}">
-      Agregar al carrito
-    </button>
-  `;
+    const productos = await respuesta.json();
 
-  contenedorProductos.appendChild(tarjeta);
-});
+    productos.forEach((producto) => {
+      const tarjeta = document.createElement("article");
 
-const botonesAgregar = document.querySelectorAll(".btn-agregar");
+      tarjeta.classList.add("producto");
 
-botonesAgregar.forEach((boton) => {
-  boton.addEventListener("click", () => {
-    const idProducto = Number(boton.dataset.id);
+      tarjeta.innerHTML = `
+        <img
+          src="${producto.imagen}"
+          alt="${producto.nombre}"
+          class="producto-imagen"
+        />
 
-    const productoSeleccionado = productos.find(
-      (producto) => producto.id === idProducto
-    );
+        <h3>${producto.nombre}</h3>
+        <p>Categoría: ${producto.categoria}</p>
+        <p>Precio: $${producto.precio.toLocaleString("es-AR")}</p>
 
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        <button class="btn-agregar" data-id="${producto.id}">
+          Agregar al carrito
+        </button>
+      `;
 
-    carrito.push(productoSeleccionado);
+      contenedorProductos.appendChild(tarjeta);
+    });
 
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+    const botonesAgregar = document.querySelectorAll(".btn-agregar");
 
-    alert(`${productoSeleccionado.nombre} agregado al carrito`);
-  });
-});
+    botonesAgregar.forEach((boton) => {
+      boton.addEventListener("click", () => {
+        const idProducto = boton.dataset.id;
 
+        const productoSeleccionado = productos.find(
+          (producto) => producto.id === idProducto,
+        );
+
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        carrito.push(productoSeleccionado);
+
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+
+        alert(`${productoSeleccionado.nombre} agregado al carrito`);
+      });
+    });
+  } catch (error) {
+    console.error(error);
+    contenedorProductos.textContent = "No se pudieron cargar los productos.";
+  }
+}
+
+cargarProductos();

@@ -899,3 +899,85 @@ Responsive: celulares
     font-size: 28px;
   }
 }
+
+
+/* SECCIÓN DE CATEGORÍAS - HOME */
+
+.categorias {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.categorias h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.categorias > p {
+  color: #2d5669;
+  margin-bottom: 35px;
+}
+
+.contenedor-categorias {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.categoria {
+  text-decoration: none;
+  color: #303030;
+}
+
+.categoria-imagen {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: #eaf2f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.categoria-imagen img {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.categoria h3 {
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+.categoria:hover .categoria-imagen {
+  transform: scale(1.07);
+}
+
+.categoria:hover h3 {
+  color: #0066cc;
+}
+
+/* RESPONSIVE - CATEGORÍAS */
+
+@media (max-width: 768px) {
+  .contenedor-categorias {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .categorias h2 {
+    font-size: 26px;
+  }
+
+  .categoria-imagen {
+    width: 120px;
+    height: 120px;
+  }
+}
