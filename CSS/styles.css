@@ -981,3 +981,140 @@ Responsive: celulares
     height: 120px;
   }
 }
+
+/* ENCABEZADO DE TIENDA */
+
+.encabezado-tienda {
+  background-color: #eaf2f8;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+.encabezado-tienda h1 {
+  font-size: 36px;
+  color: #2d5669;
+  margin: 0 0 15px;
+}
+
+.encabezado-tienda p {
+  font-size: 18px;
+  color: #555555;
+  margin: 0;
+}
+
+/* RESPONSIVE - ENCABEZADO TIENDA */
+
+@media (max-width: 768px) {
+  .encabezado-tienda {
+    padding: 35px 15px;
+  }
+
+  .encabezado-tienda h1 {
+    font-size: 28px;
+  }
+
+  .encabezado-tienda p {
+    font-size: 16px;
+  }
+}
+
+/* FILTROS DE CATEGORÍAS - TIENDA */
+
+.filtros-categorias {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.filtro {
+  background-color: #ffffff;
+  color: #2d5669;
+  border: 1px solid #2d5669;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.filtro:hover {
+  background-color: #eaf2f8;
+  color: #2d5669;
+}
+
+.filtro.activo {
+  background-color: #2d5669;
+  color: #ffffff;
+}
+
+/* RESPONSIVE - FILTROS DE CATEGORÍAS */
+
+@media (max-width: 480px) {
+  .filtros-categorias {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .filtro {
+    width: 100%;
+    padding: 10px;
+  }
+}
+/* NOTIFICACIÓN DEL CARRITO */
+
+.notificacion {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #2d5669;
+  color: #ffffff;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.notificacion.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 480px) {
+  .notificacion {
+    top: 15px;
+    right: 15px;
+    left: 15px;
+    text-align: center;
+  }
+}
+
+/* CONTADOR DEL CARRITO */
+
+.carrito-enlace {
+  position: relative;
+}
+
+.contador-carrito {
+  position: absolute;
+  top: -10px;
+  right: -12px;
+  background-color: #0066cc;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 3px;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
