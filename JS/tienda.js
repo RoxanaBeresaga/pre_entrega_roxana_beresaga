@@ -112,7 +112,18 @@ function activarBotonesCarrito() {
 
       const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-      carrito.push(productoSeleccionado);
+      const productoExistente = carrito.find(
+        (producto) => producto.id === idProducto
+      );
+
+      if (productoExistente) {
+        productoExistente.cantidad = (productoExistente.cantidad || 1) + 1;
+      } else {
+        carrito.push({
+          ...productoSeleccionado,
+          cantidad: 1
+        });
+      }
 
       localStorage.setItem("carrito", JSON.stringify(carrito));
 
@@ -148,7 +159,12 @@ function actualizarContadorCarrito() {
 
   const contador = document.getElementById("contador-carrito");
 
-  contador.textContent = carrito.length;
+  const cantidadTotal = carrito.reduce(
+  (total, producto) => total + (producto.cantidad || 1),
+  0
+  );
+
+  contador.textContent = cantidadTotal;
 }
 
 actualizarContadorCarrito();

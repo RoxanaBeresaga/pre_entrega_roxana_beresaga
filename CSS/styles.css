@@ -1204,3 +1204,122 @@ Responsive: celulares
     padding: 30px 15px;
   }
 }
+
+/* PRODUCTOS DEL CARRITO */
+
+.producto-carrito {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #d5e5df;
+}
+
+.producto-carrito img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.producto-carrito-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.producto-carrito-info h3 {
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+
+.producto-carrito-info p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.carrito-productos {
+  min-width: 0;
+}
+.seguir-comprando {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 25px;
+  color: #2d5669;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.seguir-comprando:hover {
+  color: #0066cc;
+  text-decoration: underline;
+}
+/* SELECTOR DE CANTIDADES DEL CARRITO */
+
+.selector-cantidad {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.selector-cantidad button {
+  width: 35px;
+  height: 32px;
+  border: none;
+  background-color: #ffffff;
+  color: #0066cc;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.selector-cantidad span {
+  min-width: 30px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.selector-cantidad button:hover {
+  background-color: #eaf2f8;
+}
+
+/* SUBTOTAL DE CADA PRODUCTO */
+
+.producto-carrito-subtotal {
+  text-align: right;
+  min-width: 110px;
+}
+
+.producto-carrito-subtotal p {
+  font-size: 14px;
+  color: #666666;
+  margin: 0 0 5px;
+}
+
+.producto-carrito-subtotal strong {
+  font-size: 18px;
+  color: #2d5669;
+}
+
+/* BOTÓN ELIMINAR PRODUCTO */
+
+.btn-eliminar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin: 12px 0 0 auto;
+  background: none;
+  border: none;
+  color: #666666;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 0;
+  transition: color 0.3s;
+}
+
+.btn-eliminar:hover {
+  color: #c62828;
+}
