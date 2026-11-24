@@ -6,6 +6,8 @@ const totalCarrito = document.getElementById("total-carrito");
 
 const contadorCarrito = document.getElementById("contador-carrito");
 
+const finalizarCompra = document.getElementById("finalizar-compra");
+
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 // 1. Mostrar los productos del carrito
@@ -13,10 +15,18 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 function mostrarCarrito() {
   listaCarrito.innerHTML = "";
 
-  if (carrito.length === 0) {
-    listaCarrito.textContent = "Tu carrito está vacío.";
+    if (carrito.length === 0) {
+    listaCarrito.innerHTML = `
+        <div class="carrito-vacio">
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        <h3>Tu carrito está vacío</h3>
+        <p>Todavía no agregaste productos a tu carrito.</p>
+        <p>¡Descubrí nuestros productos!</p>
+        </div>
+    `;
+
     return;
-  }
+    }
 
   carrito.forEach((producto) => {
     const tarjeta = document.createElement("article");
@@ -79,6 +89,9 @@ function actualizarResumen() {
   totalCarrito.textContent = importeTotal.toLocaleString("es-AR");
 
   contadorCarrito.textContent = cantidadTotal;
+
+   // Deshabilitar el botón si el carrito está vacío
+  finalizarCompra.disabled = carrito.length === 0;
 }
 
 // 3. Modificar la cantidad de los productos
@@ -100,10 +113,25 @@ function cambiarCantidad(id, cambio) {
   actualizarResumen();
 }
 
-// 4. Detectar clics en los botones de cantidad
+// Eliminar un producto del carrito
+
+function eliminarProducto(id) {
+  carrito = carrito.filter(
+    (producto) => producto.id !== id
+  );
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+
+  mostrarCarrito();
+  actualizarResumen();
+}
+
+// 4. Detectar clics en los botones del carrito
 
 listaCarrito.addEventListener("click", (evento) => {
-  const boton = evento.target;
+  const boton = evento.target.closest("button");
+
+  if (!boton) return;
 
   if (boton.classList.contains("btn-sumar")) {
     cambiarCantidad(boton.dataset.id, 1);
@@ -112,6 +140,25 @@ listaCarrito.addEventListener("click", (evento) => {
   if (boton.classList.contains("btn-restar")) {
     cambiarCantidad(boton.dataset.id, -1);
   }
+
+  if (boton.classList.contains("btn-eliminar")) {
+    eliminarProducto(boton.dataset.id);
+  }
+});
+
+// 5. Finalizar la compra
+
+finalizarCompra.addEventListener("click", () => {
+  if (carrito.length === 0) return;
+
+  alert("¡Gracias por tu compra! Tu pedido fue realizado con éxito.");
+
+  carrito = [];
+
+  localStorage.removeItem("carrito");
+
+  mostrarCarrito();
+  actualizarResumen();
 });
 
 mostrarCarrito();
