@@ -1118,3 +1118,89 @@ Responsive: celulares
   align-items: center;
   justify-content: center;
 }
+
+/* CARRITO DE COMPRAS */
+
+.carrito {
+  padding: 50px 20px;
+  background-color: #ffffff;
+}
+
+.contenedor-carrito {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 65fr 35fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.carrito-productos,
+.resumen-carrito {
+  border: 1px solid #dce7e2;
+  border-radius: 12px;
+  padding: 25px;
+}
+
+.carrito-productos h2,
+.resumen-carrito h2 {
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+.resumen-carrito {
+  background-color: #f8fafb;
+}
+
+.carrito-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  border-top: 1px solid #dce7e2;
+  padding-top: 15px;
+}
+
+.carrito-total strong {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2d5669;
+}
+
+#finalizar-compra {
+  width: 100%;
+  padding: 12px;
+  background-color: #0066cc;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#finalizar-compra:hover {
+  background-color: #004f99;
+}
+
+.carrito-productos a {
+  color: #2d5669;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.carrito-productos a:hover {
+  text-decoration: underline;
+}
+
+/* CARRITO RESPONSIVE */
+
+@media (max-width: 768px) {
+  .contenedor-carrito {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .carrito {
+    padding: 30px 15px;
+  }
+}
