@@ -1391,3 +1391,189 @@ Responsive: celulares
   color: #4b5563;
   cursor: not-allowed;
 }
+/* ========================================
+   Blog y Acerca de: navegación y footer
+======================================== */
+.pagina-blog a:focus-visible,
+.pagina-acerca a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
+}
+
+.pagina-blog .footer-contenido h2,
+.pagina-acerca .footer-contenido h2 {
+  color: #ffffff;
+  font-size: 20px;
+  margin: 0 0 20px;
+}
+
+.pagina-blog .footer-redes h3,
+.pagina-acerca .footer-redes h3 {
+  font-size: 16px;
+  margin: 0 0 14px;
+}
+
+.pagina-blog .footer-opcion,
+.pagina-acerca .footer-opcion {
+  color: #dddddd;
+  font-size: 14px;
+}
+
+/* ========================================
+   Blog: tarjetas de artículos
+======================================== */
+.blog {
+  padding: 50px 20px;
+}
+
+.contenedor-blog {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.articulo-blog {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--color-salvia);
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.articulo-blog img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 24px;
+}
+
+.articulo-blog h2 {
+  color: var(--color-primario);
+  font-size: 24px;
+  line-height: 1.3;
+  margin: 0 0 20px;
+}
+
+.articulo-blog p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
+
+.articulo-blog .blog-categoria {
+  color: var(--color-acento);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.articulo-blog p:last-child {
+  margin-bottom: 0;
+}
+
+/* ========================================
+   Acerca de: presentación, propósito y valores
+======================================== */
+.acerca-contenido {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 20px;
+}
+
+.acerca-seccion,
+.valor {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--color-salvia);
+  border-radius: 12px;
+}
+
+.acerca-seccion h2,
+.acerca-valores > h2 {
+  color: var(--color-primario);
+  font-size: 28px;
+  margin: 0 0 20px;
+}
+
+.acerca-contenido p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
+
+.acerca-contenido p:last-child {
+  margin-bottom: 0;
+}
+
+.acerca-proposito {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin: 24px 0 40px;
+}
+
+.acerca-proposito .acerca-seccion {
+  background-color: var(--color-fondo);
+}
+
+.contenedor-valores {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.valor {
+  text-align: center;
+}
+
+.valor i {
+  color: var(--color-primario);
+  font-size: 32px;
+}
+
+.valor h3 {
+  color: var(--color-primario);
+  font-size: 20px;
+  margin: 16px 0 12px;
+}
+
+/* ========================================
+   Blog y Acerca de: tablets y celulares
+======================================== */
+@media (max-width: 1024px) {
+  .contenedor-blog {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .acerca-proposito,
+  .contenedor-valores {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .blog,
+  .acerca-contenido {
+    padding: 30px 16px;
+  }
+
+  .contenedor-blog {
+    grid-template-columns: 1fr;
+  }
+
+  .articulo-blog,
+  .acerca-seccion,
+  .valor {
+    padding: 20px;
+  }
+
+  .acerca-seccion h2,
+  .acerca-valores > h2 {
+    font-size: 24px;
+  }
+}
