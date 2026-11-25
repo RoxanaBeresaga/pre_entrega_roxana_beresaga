@@ -4,8 +4,6 @@ const cantidadCarrito = document.getElementById("cantidad-carrito");
 
 const totalCarrito = document.getElementById("total-carrito");
 
-const contadorCarrito = document.getElementById("contador-carrito");
-
 const finalizarCompra = document.getElementById("finalizar-compra");
 
 // Comprobar los datos necesarios para mostrar y calcular un producto.
@@ -158,8 +156,6 @@ function actualizarResumen() {
   totalCarrito.textContent = Number.isFinite(importeTotal)
     ? importeTotal.toLocaleString("es-AR") : "Importe inválido";
 
-  contadorCarrito.textContent = cantidadCarrito.textContent;
-
   // No permitir compras vacías ni cálculos fuera del rango numérico.
   finalizarCompra.disabled = carrito.length === 0 || !tieneTotalesValidos(carrito);
 }
@@ -167,6 +163,8 @@ function actualizarResumen() {
 // 3. Modificar la cantidad de los productos
 
 function cambiarCantidad(id, cambio) {
+  if (!sincronizarCarrito()) return;
+
   const producto = carrito.find(
     (producto) => producto.id === id
   );
@@ -193,6 +191,9 @@ function cambiarCantidad(id, cambio) {
 // Eliminar un producto del carrito
 
 function eliminarProducto(id) {
+  if (!sincronizarCarrito()) return;
+  if (!carrito.some((producto) => producto.id === id)) return;
+
   const nuevoCarrito = carrito.filter(
     (producto) => producto.id !== id
   );
@@ -227,6 +228,8 @@ listaCarrito.addEventListener("click", (evento) => {
 // 5. Finalizar la compra
 
 finalizarCompra.addEventListener("click", () => {
+  if (!sincronizarCarrito()) return;
+
   if (carrito.length === 0 || !tieneTotalesValidos(carrito)) return;
 
   try {
@@ -247,3 +250,21 @@ finalizarCompra.addEventListener("click", () => {
 
 mostrarCarrito();
 actualizarResumen();
+
+// Leer los datos actuales sin escribir en localStorage.
+function sincronizarCarrito() {
+  const datos = obtenerCarrito();
+  carrito = datos || [];
+  mostrarCarrito();
+  actualizarResumen();
+  return datos !== null;
+}
+
+window.addEventListener("pageshow", sincronizarCarrito);
+
+window.addEventListener("storage", (evento) => {
+  if (evento.storageArea === localStorage &&
+      (evento.key === "carrito" || evento.key === null)) {
+    sincronizarCarrito();
+  }
+});

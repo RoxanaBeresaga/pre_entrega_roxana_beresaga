@@ -249,3 +249,13 @@ function actualizarContadorCarrito() {
 }
 
 actualizarContadorCarrito();
+
+// Actualizar solo el contador al volver o recibir cambios de otra pestaña.
+window.addEventListener("pageshow", actualizarContadorCarrito);
+
+window.addEventListener("storage", (evento) => {
+  if (evento.storageArea === localStorage &&
+      (evento.key === "carrito" || evento.key === null)) {
+    actualizarContadorCarrito();
+  }
+});
