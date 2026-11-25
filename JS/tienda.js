@@ -7,6 +7,72 @@ const tituloProductos = document.querySelector(".productos h2");
 
 let productos = [];
 
+// Comprobar los datos necesarios para mostrar y calcular un producto.
+function esProductoValido(producto) {
+  return producto !== null &&
+    typeof producto === "object" &&
+    ((typeof producto.id === "string" && producto.id.trim() !== "") ||
+      (typeof producto.id === "number" && Number.isSafeInteger(producto.id))) &&
+    ["nombre", "categoria", "imagen"].every(
+      (campo) => typeof producto[campo] === "string" && producto[campo].trim() !== ""
+    ) &&
+    typeof producto.precio === "number" &&
+    Number.isFinite(producto.precio) &&
+    producto.precio >= 0;
+}
+
+// Mantener el mismo formato de identificador y cantidad en ambas páginas.
+function normalizarProducto(producto) {
+  return {
+    ...producto,
+    id: String(producto.id).trim(),
+    cantidad: Number.isSafeInteger(producto.cantidad) && producto.cantidad > 0
+      ? producto.cantidad
+      : 1
+  };
+}
+
+// Recuperar y validar los productos almacenados.
+function obtenerCarrito() {
+  try {
+    const datos = JSON.parse(localStorage.getItem("carrito"));
+
+    if (datos === null) return [];
+    if (!Array.isArray(datos)) {
+      throw new Error("El carrito almacenado no es un array.");
+    }
+
+    return datos
+      .filter(esProductoValido)
+      .map(normalizarProducto)
+      .filter((producto) => Number.isFinite(producto.precio * producto.cantidad));
+  } catch (error) {
+    console.error("Error al recuperar el carrito:", error);
+    return null;
+  }
+}
+
+// Comprobar también que la suma de varios productos sea válida.
+function tieneTotalesValidos(lista) {
+  const cantidadTotal = lista.reduce((total, producto) => total + producto.cantidad, 0);
+  const importeTotal = lista.reduce(
+    (total, producto) => total + producto.precio * producto.cantidad, 0
+  );
+  return Number.isSafeInteger(cantidadTotal) && Number.isFinite(importeTotal);
+}
+
+// Actualizar la interfaz solo cuando el guardado se haya completado.
+function guardarCarrito(lista) {
+  try {
+    localStorage.setItem("carrito", JSON.stringify(lista));
+    return true;
+  } catch (error) {
+    console.error("Error al guardar el carrito:", error);
+    alert("No se pudo guardar el carrito. El cambio no se realizó.");
+    return false;
+  }
+}
+
 // 1. Obtener los productos desde MockAPI
 
 async function cargarProductos() {
@@ -17,7 +83,11 @@ async function cargarProductos() {
       throw new Error("Error al obtener los productos");
     }
 
-    productos = await respuesta.json();
+    const datos = await respuesta.json();
+    if (!Array.isArray(datos)) {
+      throw new Error("La API no devolvió una lista de productos.");
+    }
+    productos = datos.filter(esProductoValido).map(normalizarProducto);
 
     // Obtener la categoría seleccionada desde Home
     const parametros = new URLSearchParams(window.location.search);
@@ -110,14 +180,20 @@ function activarBotonesCarrito() {
         (producto) => producto.id === idProducto
       );
 
-      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      if (!productoSeleccionado) return;
+
+      const carrito = obtenerCarrito();
+      if (carrito === null) {
+        alert("No se pudo leer el carrito. Se conservaron los datos almacenados.");
+        return;
+      }
 
       const productoExistente = carrito.find(
         (producto) => producto.id === idProducto
       );
 
       if (productoExistente) {
-        productoExistente.cantidad = (productoExistente.cantidad || 1) + 1;
+        productoExistente.cantidad += 1;
       } else {
         carrito.push({
           ...productoSeleccionado,
@@ -125,7 +201,11 @@ function activarBotonesCarrito() {
         });
       }
 
-      localStorage.setItem("carrito", JSON.stringify(carrito));
+      if (!tieneTotalesValidos(carrito)) {
+        alert("La cantidad o el importe supera el límite permitido.");
+        return;
+      }
+      if (!guardarCarrito(carrito)) return;
 
       actualizarContadorCarrito();
 
@@ -155,16 +235,17 @@ function mostrarNotificacion(nombreProducto) {
 }
 
 function actualizarContadorCarrito() {
-  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const carrito = obtenerCarrito() || [];
 
   const contador = document.getElementById("contador-carrito");
 
   const cantidadTotal = carrito.reduce(
-  (total, producto) => total + (producto.cantidad || 1),
+  (total, producto) => total + producto.cantidad,
   0
   );
 
-  contador.textContent = cantidadTotal;
+  contador.textContent = Number.isSafeInteger(cantidadTotal)
+    ? cantidadTotal : "Cantidad inválida";
 }
 
 actualizarContadorCarrito();

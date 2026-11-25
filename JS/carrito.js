@@ -8,14 +8,82 @@ const contadorCarrito = document.getElementById("contador-carrito");
 
 const finalizarCompra = document.getElementById("finalizar-compra");
 
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+// Comprobar los datos necesarios para mostrar y calcular un producto.
+function esProductoValido(producto) {
+  return producto !== null &&
+    typeof producto === "object" &&
+    ((typeof producto.id === "string" && producto.id.trim() !== "") ||
+      (typeof producto.id === "number" && Number.isSafeInteger(producto.id))) &&
+    ["nombre", "categoria", "imagen"].every(
+      (campo) => typeof producto[campo] === "string" && producto[campo].trim() !== ""
+    ) &&
+    typeof producto.precio === "number" &&
+    Number.isFinite(producto.precio) &&
+    producto.precio >= 0;
+}
+
+// Mantener el mismo formato de identificador y cantidad en ambas páginas.
+function normalizarProducto(producto) {
+  return {
+    ...producto,
+    id: String(producto.id).trim(),
+    cantidad: Number.isSafeInteger(producto.cantidad) && producto.cantidad > 0
+      ? producto.cantidad
+      : 1
+  };
+}
+
+// Recuperar y validar los productos almacenados.
+function obtenerCarrito() {
+  try {
+    const datos = JSON.parse(localStorage.getItem("carrito"));
+
+    if (datos === null) return [];
+    if (!Array.isArray(datos)) {
+      throw new Error("El carrito almacenado no es un array.");
+    }
+
+    return datos
+      .filter(esProductoValido)
+      .map(normalizarProducto)
+      .filter((producto) => Number.isFinite(producto.precio * producto.cantidad));
+  } catch (error) {
+    console.error("Error al recuperar el carrito:", error);
+    return null;
+  }
+}
+
+// Comprobar también que la suma de varios productos sea válida.
+function tieneTotalesValidos(lista) {
+  const cantidadTotal = lista.reduce((total, producto) => total + producto.cantidad, 0);
+  const importeTotal = lista.reduce(
+    (total, producto) => total + producto.precio * producto.cantidad, 0
+  );
+  return Number.isSafeInteger(cantidadTotal) && Number.isFinite(importeTotal);
+}
+
+// Actualizar la interfaz solo cuando el guardado se haya completado.
+function guardarCarrito(lista) {
+  try {
+    localStorage.setItem("carrito", JSON.stringify(lista));
+    return true;
+  } catch (error) {
+    console.error("Error al guardar el carrito:", error);
+    alert("No se pudo guardar el carrito. El cambio no se realizó.");
+    return false;
+  }
+}
+
+let carrito = obtenerCarrito() || [];
+
+// Los datos normalizados se guardan al realizar un cambio.
 
 // 1. Mostrar los productos del carrito
 
 function mostrarCarrito() {
   listaCarrito.innerHTML = "";
 
-    if (carrito.length === 0) {
+  if (carrito.length === 0) {
     listaCarrito.innerHTML = `
         <div class="carrito-vacio">
         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -26,7 +94,7 @@ function mostrarCarrito() {
     `;
 
     return;
-    }
+  }
 
   carrito.forEach((producto) => {
     const tarjeta = document.createElement("article");
@@ -84,14 +152,16 @@ function actualizarResumen() {
     0
   );
 
-  cantidadCarrito.textContent = cantidadTotal;
+  cantidadCarrito.textContent = Number.isSafeInteger(cantidadTotal)
+    ? cantidadTotal : "Cantidad inválida";
 
-  totalCarrito.textContent = importeTotal.toLocaleString("es-AR");
+  totalCarrito.textContent = Number.isFinite(importeTotal)
+    ? importeTotal.toLocaleString("es-AR") : "Importe inválido";
 
-  contadorCarrito.textContent = cantidadTotal;
+  contadorCarrito.textContent = cantidadCarrito.textContent;
 
-   // Deshabilitar el botón si el carrito está vacío
-  finalizarCompra.disabled = carrito.length === 0;
+  // No permitir compras vacías ni cálculos fuera del rango numérico.
+  finalizarCompra.disabled = carrito.length === 0 || !tieneTotalesValidos(carrito);
 }
 
 // 3. Modificar la cantidad de los productos
@@ -103,11 +173,18 @@ function cambiarCantidad(id, cambio) {
 
   if (!producto) return;
 
-  if (producto.cantidad + cambio < 1) return;
+  const nuevaCantidad = producto.cantidad + cambio;
+  if (!Number.isSafeInteger(nuevaCantidad) || nuevaCantidad < 1) return;
 
-  producto.cantidad += cambio;
-
-  localStorage.setItem("carrito", JSON.stringify(carrito));
+  const nuevoCarrito = carrito.map((item) =>
+    item === producto ? { ...item, cantidad: nuevaCantidad } : item
+  );
+  if (!tieneTotalesValidos(nuevoCarrito)) {
+    alert("La cantidad o el importe supera el límite permitido.");
+    return;
+  }
+  if (!guardarCarrito(nuevoCarrito)) return;
+  carrito = nuevoCarrito;
 
   mostrarCarrito();
   actualizarResumen();
@@ -116,11 +193,12 @@ function cambiarCantidad(id, cambio) {
 // Eliminar un producto del carrito
 
 function eliminarProducto(id) {
-  carrito = carrito.filter(
+  const nuevoCarrito = carrito.filter(
     (producto) => producto.id !== id
   );
 
-  localStorage.setItem("carrito", JSON.stringify(carrito));
+  if (!guardarCarrito(nuevoCarrito)) return;
+  carrito = nuevoCarrito;
 
   mostrarCarrito();
   actualizarResumen();
@@ -149,13 +227,19 @@ listaCarrito.addEventListener("click", (evento) => {
 // 5. Finalizar la compra
 
 finalizarCompra.addEventListener("click", () => {
-  if (carrito.length === 0) return;
+  if (carrito.length === 0 || !tieneTotalesValidos(carrito)) return;
+
+  try {
+    localStorage.removeItem("carrito");
+  } catch (error) {
+    console.error("Error al finalizar la compra:", error);
+    alert("No se pudo vaciar el carrito. La compra no se finalizó.");
+    return;
+  }
 
   alert("¡Gracias por tu compra! Tu pedido fue realizado con éxito.");
 
   carrito = [];
-
-  localStorage.removeItem("carrito");
 
   mostrarCarrito();
   actualizarResumen();
