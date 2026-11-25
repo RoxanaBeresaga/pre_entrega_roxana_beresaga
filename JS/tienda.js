@@ -6,6 +6,7 @@ const botonesFiltros = document.querySelectorAll(".filtro");
 const tituloProductos = document.querySelector(".productos h2");
 
 let productos = [];
+let estadoCatalogo = "cargando";
 
 // Comprobar los datos necesarios para mostrar y calcular un producto.
 function esProductoValido(producto) {
@@ -18,7 +19,9 @@ function esProductoValido(producto) {
     ) &&
     typeof producto.precio === "number" &&
     Number.isFinite(producto.precio) &&
-    producto.precio >= 0;
+    producto.precio >= 0 &&
+    ["Celulares", "Audio", "Electrónica", "Tecnología", "Moda"].includes(producto.categoria) &&
+    /^\.\.\/img\/productos\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/.test(producto.imagen);
 }
 
 // Mantener el mismo formato de identificador y cantidad en ambas páginas.
@@ -42,10 +45,27 @@ function obtenerCarrito() {
       throw new Error("El carrito almacenado no es un array.");
     }
 
-    return datos
+    const productosValidos = datos
       .filter(esProductoValido)
       .map(normalizarProducto)
       .filter((producto) => Number.isFinite(producto.precio * producto.cantidad));
+
+    // Agrupar registros antiguos con el mismo identificador.
+    const agrupados = [];
+    productosValidos.forEach((producto) => {
+      const existente = agrupados.find((item) => item.id === producto.id);
+      if (existente) {
+        const cantidad = existente.cantidad + producto.cantidad;
+        if (!Number.isSafeInteger(cantidad) ||
+            !Number.isFinite(existente.precio * cantidad)) {
+          throw new Error("La cantidad agrupada supera el límite permitido.");
+        }
+        existente.cantidad = cantidad;
+      } else {
+        agrupados.push(producto);
+      }
+    });
+    return agrupados;
   } catch (error) {
     console.error("Error al recuperar el carrito:", error);
     return null;
@@ -76,6 +96,8 @@ function guardarCarrito(lista) {
 // 1. Obtener los productos desde MockAPI
 
 async function cargarProductos() {
+  estadoCatalogo = "cargando";
+  contenedorProductos.textContent = "Cargando productos...";
   try {
     const respuesta = await fetch(API_URL);
 
@@ -88,6 +110,11 @@ async function cargarProductos() {
       throw new Error("La API no devolvió una lista de productos.");
     }
     productos = datos.filter(esProductoValido).map(normalizarProducto);
+    // Conservar el primer producto válido de cada identificador.
+    productos = productos.filter((producto, indice, lista) =>
+      lista.findIndex((item) => item.id === producto.id) === indice
+    );
+    estadoCatalogo = "listo";
 
     // Obtener la categoría seleccionada desde Home
     const parametros = new URLSearchParams(window.location.search);
@@ -96,9 +123,11 @@ async function cargarProductos() {
     filtrarProductos(categoria);
 
   } catch (error) {
+    estadoCatalogo = "error";
+    productos = [];
     console.error(error);
     contenedorProductos.textContent =
-      "No se pudieron cargar los productos.";
+      "No pudimos cargar los productos. Intentá nuevamente más tarde.";
   }
 }
 
@@ -107,6 +136,13 @@ async function cargarProductos() {
 function mostrarProductos(listaProductos) {
   contenedorProductos.innerHTML = "";
 
+  if (listaProductos.length === 0) {
+    contenedorProductos.textContent = productos.length === 0
+      ? "No hay productos disponibles."
+      : "No hay productos disponibles en esta categoría.";
+    return;
+  }
+
   listaProductos.forEach((producto) => {
     const tarjeta = document.createElement("article");
 
@@ -114,19 +150,27 @@ function mostrarProductos(listaProductos) {
 
     tarjeta.innerHTML = `
       <img
-        src="${producto.imagen}"
-        alt="${producto.nombre}"
+        alt=""
         class="producto-imagen"
       />
 
-      <h3>${producto.nombre}</h3>
-      <p>Categoría: ${producto.categoria}</p>
-      <p>Precio: $${producto.precio.toLocaleString("es-AR")}</p>
+      <h3></h3>
+      <p></p>
+      <p></p>
 
-      <button class="btn-agregar" data-id="${producto.id}">
+      <button class="btn-agregar">
         Agregar al carrito
       </button>
     `;
+
+    const imagen = tarjeta.querySelector("img");
+    imagen.setAttribute("src", producto.imagen);
+    imagen.setAttribute("alt", producto.nombre);
+    tarjeta.querySelector("h3").textContent = producto.nombre;
+    const textos = tarjeta.querySelectorAll("p");
+    textos[0].textContent = `Categoría: ${producto.categoria}`;
+    textos[1].textContent = `Precio: $${producto.precio.toLocaleString("es-AR")}`;
+    tarjeta.querySelector("button").dataset.id = producto.id;
 
     contenedorProductos.appendChild(tarjeta);
   });
@@ -137,6 +181,8 @@ function mostrarProductos(listaProductos) {
 // 3. Filtrar productos por categoría
 
 function filtrarProductos(categoria) {
+  if (estadoCatalogo !== "listo") return;
+
   if (categoria === "Todos") {
     mostrarProductos(productos);
     tituloProductos.textContent = "Todos los productos";

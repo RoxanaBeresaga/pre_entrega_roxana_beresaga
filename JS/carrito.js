@@ -17,7 +17,9 @@ function esProductoValido(producto) {
     ) &&
     typeof producto.precio === "number" &&
     Number.isFinite(producto.precio) &&
-    producto.precio >= 0;
+    producto.precio >= 0 &&
+    ["Celulares", "Audio", "Electrónica", "Tecnología", "Moda"].includes(producto.categoria) &&
+    /^\.\.\/img\/productos\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/.test(producto.imagen);
 }
 
 // Mantener el mismo formato de identificador y cantidad en ambas páginas.
@@ -41,10 +43,27 @@ function obtenerCarrito() {
       throw new Error("El carrito almacenado no es un array.");
     }
 
-    return datos
+    const productosValidos = datos
       .filter(esProductoValido)
       .map(normalizarProducto)
       .filter((producto) => Number.isFinite(producto.precio * producto.cantidad));
+
+    // Agrupar registros antiguos con el mismo identificador.
+    const agrupados = [];
+    productosValidos.forEach((producto) => {
+      const existente = agrupados.find((item) => item.id === producto.id);
+      if (existente) {
+        const cantidad = existente.cantidad + producto.cantidad;
+        if (!Number.isSafeInteger(cantidad) ||
+            !Number.isFinite(existente.precio * cantidad)) {
+          throw new Error("La cantidad agrupada supera el límite permitido.");
+        }
+        existente.cantidad = cantidad;
+      } else {
+        agrupados.push(producto);
+      }
+    });
+    return agrupados;
   } catch (error) {
     console.error("Error al recuperar el carrito:", error);
     return null;
@@ -100,37 +119,54 @@ function mostrarCarrito() {
     tarjeta.classList.add("producto-carrito");
 
     tarjeta.innerHTML = `
-      <img src="${producto.imagen}" alt="${producto.nombre}" />
+      <img alt="" />
 
       <div class="producto-carrito-info">
-        <h3>${producto.nombre}</h3>
-        <p>${producto.categoria}</p>
-        <p>$${producto.precio.toLocaleString("es-AR")}</p>
+        <h3></h3>
+        <p></p>
+        <p></p>
         <div class="selector-cantidad">
-        <button class="btn-restar" data-id="${producto.id}"
-            aria-label="Disminuir cantidad de ${producto.nombre}">
+        <button class="btn-restar">
             −
         </button>
 
-        <span>${producto.cantidad}</span>
+        <span></span>
 
-        <button class="btn-sumar" data-id="${producto.id}"
-            aria-label="Aumentar cantidad de ${producto.nombre}">
+        <button class="btn-sumar">
             +
         </button>
         </div>
       </div>
       <div class="producto-carrito-subtotal">
         <p>Subtotal</p>
-        <strong>$${subtotal.toLocaleString("es-AR")}</strong>
+        <strong></strong>
 
-        <button class="btn-eliminar" data-id="${producto.id}"
-            aria-label="Eliminar ${producto.nombre} del carrito">
+        <button class="btn-eliminar">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
             Eliminar
         </button>
      </div>
     `;
+
+    const imagen = tarjeta.querySelector("img");
+    imagen.setAttribute("src", producto.imagen);
+    imagen.setAttribute("alt", producto.nombre);
+    tarjeta.querySelector("h3").textContent = producto.nombre;
+    const textos = tarjeta.querySelectorAll(".producto-carrito-info p");
+    textos[0].textContent = producto.categoria;
+    textos[1].textContent = `$${producto.precio.toLocaleString("es-AR")}`;
+    tarjeta.querySelector(".selector-cantidad span").textContent = producto.cantidad;
+    tarjeta.querySelector("strong").textContent = `$${subtotal.toLocaleString("es-AR")}`;
+
+    const restar = tarjeta.querySelector(".btn-restar");
+    restar.dataset.id = producto.id;
+    restar.setAttribute("aria-label", `Disminuir cantidad de ${producto.nombre}`);
+    const sumar = tarjeta.querySelector(".btn-sumar");
+    sumar.dataset.id = producto.id;
+    sumar.setAttribute("aria-label", `Aumentar cantidad de ${producto.nombre}`);
+    const eliminar = tarjeta.querySelector(".btn-eliminar");
+    eliminar.dataset.id = producto.id;
+    eliminar.setAttribute("aria-label", `Eliminar ${producto.nombre} del carrito`);
 
     listaCarrito.appendChild(tarjeta);
   });
