@@ -104,14 +104,47 @@ function guardarCarrito(lista) {
   }
 }
 
-let carrito = obtenerCarrito() || [];
+let carrito = obtenerCarrito();
+let errorRecuperacion = carrito === null;
+carrito = carrito || [];
+const errorCarrito = document.getElementById("error-carrito");
 
 // Los datos normalizados se guardan al realizar un cambio.
 
 // 1. Mostrar los productos del carrito
 
 function mostrarCarrito() {
+  const activo = document.activeElement;
+  const controles = [...listaCarrito.querySelectorAll("button[data-id]")];
+  const restaurar = controles.includes(activo);
+  const clase = restaurar ? activo.className : "";
+  const id = restaurar ? activo.dataset.id : null;
+  const ids = [...new Set(controles.map((boton) => boton.dataset.id))];
+
+  renderizarCarrito();
+
+  if (restaurar) {
+    const nuevos = [...listaCarrito.querySelectorAll("button[data-id]")];
+    // Si desapareció el producto, priorizar el siguiente y luego el anterior.
+    const indice = ids.indexOf(id);
+    const candidatos = [id, ...ids.slice(indice + 1), ...ids.slice(0, indice).reverse()];
+    let destino;
+    for (const candidato of candidatos) {
+      destino = nuevos.find((boton) => boton.dataset.id === candidato &&
+        boton.className === clase);
+      if (destino) break;
+    }
+    (destino || seguirComprando).focus({ preventScroll: true });
+  }
+}
+
+function renderizarCarrito() {
   listaCarrito.innerHTML = "";
+  const mensaje = errorRecuperacion
+    ? "No se pudo recuperar el carrito. Los datos guardados se conservaron. Volvé a intentarlo cuando el almacenamiento esté disponible o los datos sean válidos."
+    : "";
+  if (errorCarrito.textContent !== mensaje) errorCarrito.textContent = mensaje;
+  if (errorRecuperacion) return;
 
   if (carrito.length === 0) {
     listaCarrito.innerHTML = `
@@ -205,8 +238,13 @@ function actualizarResumen() {
   totalCarrito.textContent = Number.isFinite(importeTotal)
     ? importeTotal.toLocaleString("es-AR") : "Importe inválido";
 
+  if (errorRecuperacion) {
+    cantidadCarrito.textContent = "No disponible";
+    totalCarrito.textContent = "No disponible";
+  }
+
   // No permitir compras vacías ni cálculos fuera del rango numérico.
-  finalizarCompra.disabled = carrito.length === 0 || !tieneTotalesValidos(carrito);
+  finalizarCompra.disabled = errorRecuperacion || carrito.length === 0 || !tieneTotalesValidos(carrito);
 }
 
 // 3. Modificar la cantidad de los productos
@@ -302,6 +340,7 @@ actualizarResumen();
 // Leer los datos actuales sin escribir en localStorage.
 function sincronizarCarrito() {
   const datos = obtenerCarrito();
+  errorRecuperacion = datos === null;
   carrito = datos || [];
   mostrarCarrito();
   actualizarResumen();

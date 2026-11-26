@@ -2,6 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <meta name="description" content="Descubrí el catálogo de Talento Lab Ecommerce, filtrá productos por categoría y agregalos al carrito para simular tu compra." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Tienda | Talento Lab Ecommerce</title>
@@ -11,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
   </head>
@@ -36,7 +37,7 @@
           <li>
             <a href="carrito.html" class="carrito-enlace" aria-label="Bolsa de compras">
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-              <span id="contador-carrito" class="contador-carrito">0</span>
+              <span aria-hidden="true" id="contador-carrito" class="contador-carrito">0</span>
             </a>
           </li>
         </ul>
@@ -60,6 +61,8 @@
           <button class="filtro" data-categoria="Moda">Moda</button>
         </div>
         <h2>Todos los productos</h2>  
+        <p id="estado-catalogo" role="status" aria-atomic="true"></p>
+        <p id="error-carrito" role="status" aria-atomic="true"></p>
         <div class="contenedor-productos">
           <!-- JavaScript agregará aquí las tarjetas -->
         </div>
@@ -162,7 +165,8 @@
         <span class="footer-aclaracion">Proyecto educativo. Las funcionalidades comerciales son simuladas.</span>
       </p>
     </footer>
-    <div id="notificacion" class="notificacion" role="status"></div>
+    <div id="notificacion" class="notificacion" aria-hidden="true"></div>
+    <div id="anuncio-carrito" class="solo-lectores" role="status" aria-atomic="true"></div>
     <script src="../JS/tienda.js"></script>
   </body>
 </html>

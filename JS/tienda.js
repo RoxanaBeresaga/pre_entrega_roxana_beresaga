@@ -4,6 +4,12 @@ const API_URL = "https://6b049df0db01cf463607720c.mockapi.io/productos";
 const contenedorProductos = document.querySelector(".contenedor-productos");
 const botonesFiltros = document.querySelectorAll(".filtro");
 const tituloProductos = document.querySelector(".productos h2");
+const mensajeCatalogo = document.getElementById("estado-catalogo");
+const errorCarrito = document.getElementById("error-carrito");
+
+function anunciarCatalogo(mensaje) {
+  if (mensajeCatalogo.textContent !== mensaje) mensajeCatalogo.textContent = mensaje;
+}
 
 let productos = [];
 let estadoCatalogo = "cargando";
@@ -97,7 +103,8 @@ function guardarCarrito(lista) {
 
 async function cargarProductos() {
   estadoCatalogo = "cargando";
-  contenedorProductos.textContent = "Cargando productos...";
+  contenedorProductos.textContent = "";
+  anunciarCatalogo("Cargando productos...");
   try {
     const respuesta = await fetch(API_URL);
 
@@ -126,8 +133,8 @@ async function cargarProductos() {
     estadoCatalogo = "error";
     productos = [];
     console.error(error);
-    contenedorProductos.textContent =
-      "No pudimos cargar los productos. Intentá nuevamente más tarde.";
+    contenedorProductos.textContent = "";
+    anunciarCatalogo("No pudimos cargar los productos. Intentá nuevamente más tarde.");
   }
 }
 
@@ -137,9 +144,9 @@ function mostrarProductos(listaProductos) {
   contenedorProductos.innerHTML = "";
 
   if (listaProductos.length === 0) {
-    contenedorProductos.textContent = productos.length === 0
+    anunciarCatalogo(productos.length === 0
       ? "No hay productos disponibles."
-      : "No hay productos disponibles en esta categoría.";
+      : "No hay productos disponibles en esta categoría.");
     return;
   }
 
@@ -195,6 +202,11 @@ function filtrarProductos(categoria) {
     tituloProductos.textContent = categoria;
   }
 
+  const cantidad = contenedorProductos.querySelectorAll(".producto").length;
+  if (cantidad > 0) {
+    anunciarCatalogo(`${categoria}: ${cantidad} ${cantidad === 1 ? "producto disponible" : "productos disponibles"}.`);
+  }
+
   // Actualizar el botón seleccionado
 
   botonesFiltros.forEach((boton) => {
@@ -230,7 +242,7 @@ function activarBotonesCarrito() {
 
       const carrito = obtenerCarrito();
       if (carrito === null) {
-        alert("No se pudo leer el carrito. Se conservaron los datos almacenados.");
+        actualizarContadorCarrito();
         return;
       }
 
@@ -265,6 +277,7 @@ function activarBotonesCarrito() {
 cargarProductos();
 
 let temporizadorNotificacion;
+let temporizadorAnuncio;
 
 function mostrarNotificacion(nombreProducto) {
   const notificacion = document.getElementById("notificacion");
@@ -272,6 +285,13 @@ function mostrarNotificacion(nombreProducto) {
   notificacion.textContent = `✓ ${nombreProducto} agregado al carrito`;
 
   notificacion.classList.add("visible");
+
+  const anuncio = document.getElementById("anuncio-carrito");
+  clearTimeout(temporizadorAnuncio);
+  anuncio.textContent = "";
+  temporizadorAnuncio = setTimeout(() => {
+    anuncio.textContent = `${nombreProducto} agregado al carrito. ${document.querySelector(".carrito-enlace").getAttribute("aria-label")}.`;
+  }, 100);
 
   clearTimeout(temporizadorNotificacion);
 
@@ -281,9 +301,19 @@ function mostrarNotificacion(nombreProducto) {
 }
 
 function actualizarContadorCarrito() {
-  const carrito = obtenerCarrito() || [];
+  const carrito = obtenerCarrito();
 
   const contador = document.getElementById("contador-carrito");
+  const enlace = document.querySelector(".carrito-enlace");
+  const mensaje = carrito === null
+    ? "No se pudo recuperar el carrito. Se conservaron los datos guardados; no se agregarán productos hasta poder leerlos correctamente."
+    : "";
+  if (errorCarrito.textContent !== mensaje) errorCarrito.textContent = mensaje;
+  if (carrito === null) {
+    contador.textContent = "—";
+    enlace.setAttribute("aria-label", "Bolsa de compras: cantidad no disponible");
+    return;
+  }
 
   const cantidadTotal = carrito.reduce(
   (total, producto) => total + producto.cantidad,
@@ -292,6 +322,9 @@ function actualizarContadorCarrito() {
 
   contador.textContent = Number.isSafeInteger(cantidadTotal)
     ? cantidadTotal : "Cantidad inválida";
+  enlace.setAttribute("aria-label", Number.isSafeInteger(cantidadTotal)
+    ? `Bolsa de compras: ${cantidadTotal} ${cantidadTotal === 1 ? "producto" : "productos"}`
+    : "Bolsa de compras: cantidad inválida");
 }
 
 actualizarContadorCarrito();
