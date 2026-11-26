@@ -1194,6 +1194,98 @@ Responsive: celulares
   text-decoration: underline;
 }
 
+/* CONFIRMACIÓN DE COMPRA */
+
+.modal-compra {
+  box-sizing: border-box;
+  width: min(460px, calc(100% - 32px));
+  max-height: calc(100% - 32px);
+  margin: auto;
+  padding: 56px 24px 28px;
+  border: none;
+  border-radius: 16px;
+  background-color: #ffffff;
+  color: var(--color-texto);
+  font-family: inherit;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  overflow-y: auto;
+}
+
+.modal-compra::backdrop {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.modal-compra-cerrar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--color-primario);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-compra-cerrar:hover {
+  background-color: #eaf2f8;
+}
+
+.modal-compra-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  background-color: #eaf2f8;
+  color: var(--color-primario);
+  font-size: 32px;
+}
+
+.modal-compra h2 {
+  margin: 0 0 16px;
+  color: var(--color-primario);
+  font-size: clamp(24px, 5vw, 28px);
+  line-height: 1.25;
+}
+
+.modal-compra p {
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.modal-compra .modal-compra-secundario {
+  color: #666666;
+  font-size: 14px;
+}
+
+.modal-compra-continuar {
+  display: block;
+  margin-top: 28px;
+  padding: 14px;
+  border-radius: 6px;
+  background-color: var(--color-acento);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.modal-compra-continuar:hover {
+  background-color: #004f99;
+}
+
+.modal-compra :focus-visible,
+.seguir-comprando:focus-visible,
+#finalizar-compra:focus-visible {
+  outline: 3px solid var(--color-primario);
+  outline-offset: 3px;
+}
+
 /* CARRITO RESPONSIVE */
 
 @media (max-width: 768px) {

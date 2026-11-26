@@ -6,6 +6,19 @@ const totalCarrito = document.getElementById("total-carrito");
 
 const finalizarCompra = document.getElementById("finalizar-compra");
 
+const confirmacionCompra = document.getElementById("confirmacion-compra");
+const cerrarConfirmacion = confirmacionCompra.querySelector(".modal-compra-cerrar");
+const seguirComprando = document.querySelector(".carrito-productos .seguir-comprando");
+
+cerrarConfirmacion.addEventListener("click", () => {
+  confirmacionCompra.close();
+});
+
+// Escape también dispara close mediante el comportamiento nativo del dialog.
+confirmacionCompra.addEventListener("close", () => {
+  seguirComprando.focus();
+});
+
 // Comprobar los datos necesarios para mostrar y calcular un producto.
 function esProductoValido(producto) {
   return producto !== null &&
@@ -276,12 +289,11 @@ finalizarCompra.addEventListener("click", () => {
     return;
   }
 
-  alert("¡Gracias por tu compra! Tu pedido fue realizado con éxito.");
-
   carrito = [];
 
   mostrarCarrito();
   actualizarResumen();
+  confirmacionCompra.showModal();
 });
 
 mostrarCarrito();
