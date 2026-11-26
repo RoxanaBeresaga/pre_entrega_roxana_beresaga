@@ -1,5 +1,5 @@
 
-// Suscripciones educativas locales, independientes del carrito.
+// Validación y registro de suscripciones al newsletter.
 const formularioNewsletter = document.getElementById("formulario-newsletter");
 
 if (formularioNewsletter) {
