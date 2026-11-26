@@ -481,7 +481,7 @@ Footer: distribución con CSS Grid
 /* ========================================
 Títulos y textos del footer
 ======================================== */
-.footer-contenido h3 {
+.footer-contenido h2 {
   color: #ffffff;
   font-size: 20px;
   margin: 0 0 20px;
@@ -563,7 +563,7 @@ Redes sociales del Footer
 .footer-redes {
   margin-top: 24px;
 }
-.footer-redes h4 {
+.footer-redes h3 {
   color: #ffffff;
   font-size: 16px;
   margin: 0 0 14px;
@@ -583,7 +583,7 @@ Redes sociales del Footer
 .footer-redes-iconos a:hover {
   color: #ffffff;
 }
-.footer-redes-iconos a:focus-visible {
+.footer-contenido a:focus-visible {
   outline: 2px solid #ffffff;
   outline-offset: 5px;
 }
@@ -1486,29 +1486,12 @@ Responsive: celulares
 /* ========================================
    Blog y Acerca de: navegación y footer
 ======================================== */
-.pagina-blog a:focus-visible,
-.pagina-acerca a:focus-visible {
+.pagina-blog header a:focus-visible,
+.pagina-blog main a:focus-visible,
+.pagina-acerca header a:focus-visible,
+.pagina-acerca main a:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 5px;
-}
-
-.pagina-blog .footer-contenido h2,
-.pagina-acerca .footer-contenido h2 {
-  color: #ffffff;
-  font-size: 20px;
-  margin: 0 0 20px;
-}
-
-.pagina-blog .footer-redes h3,
-.pagina-acerca .footer-redes h3 {
-  font-size: 16px;
-  margin: 0 0 14px;
-}
-
-.pagina-blog .footer-opcion,
-.pagina-acerca .footer-opcion {
-  color: #dddddd;
-  font-size: 14px;
 }
 
 /* ========================================
@@ -1668,4 +1651,34 @@ Responsive: celulares
   .acerca-valores > h2 {
     font-size: 24px;
   }
+}
+
+/* Aclaraciones y estados del footer y Newsletter */
+.footer-opcion {
+  color: #dddddd;
+  font-size: 14px;
+}
+
+.footer-aclaracion {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.newsletter .newsletter-aclaracion,
+.newsletter .newsletter-mensaje {
+  max-width: 650px;
+  margin: 16px auto 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.newsletter .newsletter-mensaje {
+  min-height: 1.5em;
+  font-weight: 500;
+}
+
+.newsletter input[aria-invalid="true"] {
+  border: 2px solid #a82020;
 }

@@ -137,29 +137,33 @@
       <section class="newsletter">
         <h2>Suscribite al Newsletter</h2>
         <p>Recibí novedades de nuestra tienda y ofertas exclusivas</p>
-        <form>
+        <form id="formulario-newsletter">
           <label for="email-newsletter">Correo electrónico</label>
           <input
             type="email"
             id="email-newsletter"
+            autocomplete="email"
+            aria-describedby="newsletter-aclaracion newsletter-mensaje"
             name="email"
             placeholder="Tu correo electrónico"
             required
           />
           <button type="submit">Suscribirme</button>
         </form>
+        <p id="newsletter-aclaracion" class="newsletter-aclaracion">Suscripción simulada. Los datos se guardan únicamente en este navegador.</p>
+        <p id="newsletter-mensaje" class="newsletter-mensaje" role="status" aria-live="polite" aria-atomic="true"></p>
       </section>
     </main>
     <footer>
       <div class="footer-contenido">
         <div>
-          <h3>Contacto</h3>
+          <h2>Contacto</h2>
           <p>Dirección: Av. Siemprevivo 742, Ciudad Autónoma de Buenos Aires</p>
           <p>Teléfono: +54 11 1234 5678</p>
           <p>Horario: 9:00 - 18:00, Lunes a Viernes</p>
 
           <div class="footer-redes">
-            <h4>Seguinos</h4>
+            <h3>Seguinos</h3>
 
             <div class="footer-redes-iconos">
               <a
@@ -210,29 +214,29 @@
           </div>
         </div>
         <div>
-          <h3>Mi Cuenta</h3>
+          <h2>Mi Cuenta</h2>
           <ul>
-            <li><a href="#">Iniciar Sesión</a></li>
-            <li><a href="#">Ver Carrito</a></li>
-            <li><a href="#">Mis Favoritos</a></li>
-            <li><a href="#">Seguimiento de Pedido</a></li>
-            <li><a href="#">Ayuda</a></li>
+            <li><span class="footer-opcion">Iniciar Sesión</span></li>
+            <li><a href="pages/carrito.html">Ver Carrito</a></li>
+            <li><span class="footer-opcion">Mis Favoritos</span></li>
+            <li><span class="footer-opcion">Seguimiento de Pedido</span></li>
+            <li><a href="pages/contacto.html">Ayuda</a></li>
           </ul>
         </div>
 
         <div class="footer-app">
-          <h3>Descargá la App</h3>
-          <p>Desde App Store o Google Play</p>
+          <h2>Aplicaciones y medios de pago</h2>
+          <p>Referencias visuales de tiendas de aplicaciones</p>
 
           <div class="footer-app-imagenes">
-            <img src="img/pay/app_store.jpg" alt="Disponible en App Store" />
+            <img src="img/pay/app_store.jpg" alt="Logotipo de App Store" />
             <img
               src="img/pay/google_play.jpg"
-              alt="Disponible en Google Play"
+              alt="Logotipo de Google Play"
             />
           </div>
 
-          <p class="footer-pagos-titulo">Pasarelas de pago seguras</p>
+          <p class="footer-pagos-titulo">Medios de pago de referencia</p>
 
           <img
             class="footer-pagos"
@@ -244,6 +248,7 @@
 
       <p class="footer-copyright">
         &copy; 2026 Roxana Beresaga | Talento Tech - Ecommerce
+        <span class="footer-aclaracion">Proyecto educativo. Las funcionalidades comerciales son simuladas.</span>
       </p>
     </footer>
     <script src="JS/script.js"></script>
