@@ -1,259 +1,297 @@
 # Talento Lab Ecommerce — Proyecto Final Front-End
 
-Ecommerce educativo desarrollado por **Roxana Andrea Beresaga** para **Talento Tech 2026**. Permite explorar un catálogo, filtrar productos y simular una compra desde el navegador.
+Proyecto desarrollado para el curso de Front-End de **Talento Tech 2026**.
 
 ## Índice
 
 - [Descripción](#descripción)
 - [Demo online](#demo-online)
 - [Tecnologías utilizadas](#tecnologías-utilizadas)
-- [Funcionalidades implementadas](#funcionalidades-implementadas)
+- [Funcionalidades](#funcionalidades)
 - [Páginas del sitio](#páginas-del-sitio)
 - [Estructura del proyecto](#estructura-del-proyecto)
-- [API REST](#api-rest)
+- [Consumo de API REST](#consumo-de-api-rest)
 - [Almacenamiento local](#almacenamiento-local)
 - [Diseño responsive](#diseño-responsive)
 - [Accesibilidad y SEO](#accesibilidad-y-seo)
-- [Instalación y ejecución local](#instalación-y-ejecución-local)
-- [Alcance y limitaciones](#alcance-y-limitaciones)
-- [Posibles mejoras futuras](#posibles-mejoras-futuras)
+- [Ejecución local](#ejecución-local)
+- [Alcance del proyecto](#alcance-del-proyecto)
+- [Próximas mejoras](#próximas-mejoras)
 - [Autora](#autora)
 
 ## Descripción
 
-Talento Lab Ecommerce reúne productos de tecnología, electrónica, audio y moda. Su propósito es aplicar estructura semántica, diseño responsive, interacción mediante JavaScript, consumo de una API REST y persistencia local.
+Talento Lab Ecommerce es una tienda online de productos de tecnología, electrónica, audio, celulares y moda.
 
-La pre-entrega se centró en HTML y CSS. La versión final incorpora catálogo dinámico, carrito editable, confirmación de compra simulada, Newsletter local y mejoras de accesibilidad y SEO. El proyecto no procesa pedidos ni pagos reales.
+El objetivo de este proyecto fue aplicar los conocimientos adquiridos durante el curso de Front-End, desde la estructura semántica con HTML y el diseño con CSS hasta la incorporación de funcionalidades dinámicas con JavaScript.
+
+En la pre-entrega trabajé principalmente en la estructura y el diseño responsive del sitio. Para la entrega final incorporé el consumo de una API REST, filtros por categoría, un carrito de compras, almacenamiento local y nuevas páginas para completar la navegación.
+
+También trabajé en aspectos de accesibilidad y SEO, dos temas relacionados con mi experiencia profesional en gestión de contenidos digitales.
+
+El proyecto tiene fines educativos y permite simular una compra sin realizar pagos ni pedidos reales.
 
 ## Demo online
 
-- [Visitar Talento Lab Ecommerce en GitHub Pages](https://roxanaberesaga.github.io/pre_entrega_roxana_beresaga/).
-- [Consultar el repositorio en GitHub](https://github.com/RoxanaBeresaga/pre_entrega_roxana_beresaga).
+- [Visitar Talento Lab Ecommerce](https://roxanaberesaga.github.io/pre_entrega_roxana_beresaga/)
+- [Repositorio en GitHub](https://github.com/RoxanaBeresaga/pre_entrega_roxana_beresaga)
 
 ## Tecnologías utilizadas
 
-| Tecnología | Uso en el proyecto |
+| Tecnología | Aplicación en el proyecto |
 |---|---|
-| HTML5 | Estructura semántica, formularios y diálogo nativo de confirmación. |
-| CSS3 | Colores, tipografía, componentes, estados visuales y transiciones. |
-| JavaScript vanilla | Eventos, validaciones, manipulación del DOM y lógica del carrito. |
-| Flexbox | Distribución de tarjetas de productos, navegación y formularios. |
-| CSS Grid | Testimonios, categorías, footer y distribución del carrito. |
-| Media Queries | Adaptación de la interfaz a distintos anchos de pantalla. |
-| MockAPI | API REST pública que proporciona los productos del catálogo. |
-| Formspree | Recepción de consultas enviadas desde el formulario de contacto. |
-| localStorage | Persistencia del carrito y de las suscripciones simuladas. |
-| Google Fonts | Carga de Roboto, con alternativas tipográficas locales. |
-| Font Awesome | Iconos de navegación, redes, carrito y confirmación. |
-| Git y GitHub | Control de versiones y alojamiento del repositorio. |
-| GitHub Pages | Publicación del sitio estático. |
+| HTML5 | Estructura semántica y formularios. |
+| CSS3 | Diseño, estilos, transiciones y adaptación a diferentes dispositivos. |
+| JavaScript vanilla | Eventos, manipulación del DOM, validaciones y lógica del carrito. |
+| Flexbox | Distribución y alineación de elementos. |
+| CSS Grid | Organización de secciones y componentes. |
+| Media Queries | Diseño responsive. |
+| MockAPI | Consumo de una API REST para obtener los productos. |
+| localStorage | Persistencia del carrito y suscripciones al newsletter. |
+| Formspree | Envío del formulario de contacto. |
+| Google Fonts | Tipografía Roboto. |
+| Font Awesome | Iconos del sitio. |
+| Git y GitHub | Control de versiones. |
+| GitHub Pages | Publicación del proyecto. |
 
-No se utilizan frameworks ni procesos de compilación.
+El desarrollo se realizó con HTML, CSS y JavaScript, sin utilizar frameworks ni procesos de compilación.
 
-## Funcionalidades implementadas
+## Funcionalidades
 
-### Catálogo y navegación
+### Catálogo de productos
 
-- Navegación entre Home, Tienda, Carrito, Blog, Acerca de y Contacto.
-- Carga de productos desde MockAPI mediante `fetch`.
-- Filtros por categoría y enlaces desde Home con selección mediante parámetros de URL.
-- Tarjetas dinámicas con imagen, nombre, categoría, precio y botón para agregar al carrito.
-- Renderizado seguro: los textos externos se asignan con `textContent`; las imágenes utilizan rutas locales validadas. Las plantillas HTML son estáticas.
-- Estados visibles y accesibles de carga, error, catálogo vacío y resultados de filtros.
+- Carga dinámica de 24 productos desde MockAPI mediante `fetch`.
+- Filtros por categoría: Celulares, Audio, Electrónica, Tecnología y Moda.
+- Acceso directo a las categorías desde Home.
+- Generación de tarjetas de productos mediante la manipulación del DOM.
+- Validación de los datos recibidos desde la API.
+- Mensajes de carga, error y resultados del catálogo.
+- Notificación al agregar un producto al carrito.
 
-### Carrito y compra simulada
+### Carrito de compras
 
-- Incorporación de productos y contador dinámico de unidades, visible únicamente en Tienda.
-- Edición de cantidades, con mínimo de una unidad, y eliminación de productos.
-- Actualización de subtotales, cantidad de unidades y total.
-- Persistencia local, validación de registros, normalización de identificadores y cantidades, y agrupación de productos repetidos.
-- Sincronización mediante `storage` entre pestañas del mismo origen y actualización al volver a la página mediante `pageshow`.
-- Gestión de errores de lectura y escritura, sin completar operaciones cuando el almacenamiento falla.
-- Finalización simulada: vacía el carrito y muestra un modal personalizado basado en `<dialog>` y `showModal()`.
-- Cierre mediante X o Escape, retorno del foco a «Seguir comprando» y enlace a Tienda desde el modal.
+- Incorporación y eliminación de productos.
+- Agrupación de productos repetidos.
+- Modificación de cantidades.
+- Cálculo automático de subtotales y total de compra.
+- Contador de productos en Tienda.
+- Persistencia de los datos mediante `localStorage`.
+- Sincronización del carrito entre pestañas del mismo sitio.
+- Validación de los datos almacenados y gestión de errores.
+- Modal de confirmación al finalizar una compra simulada.
 
-### Formularios y presentación
+### Formulario de contacto
 
-- Contacto con nombre, correo y mensaje, validación HTML5 y envío mediante Formspree.
-- Newsletter simulado con normalización del correo, validación, detección de duplicados y mensajes de resultado. Limpia el campo únicamente después de guardar correctamente.
-- Footer unificado con enlaces a Carrito y Contacto, redes generales y aclaración educativa.
-- Diseño responsive y mejoras de accesibilidad y SEO.
+- Campos de nombre, correo electrónico y mensaje.
+- Validación mediante HTML5.
+- Envío de consultas a través de Formspree.
+
+### Newsletter
+
+- Validación del correo electrónico.
+- Normalización de los datos ingresados.
+- Control de suscripciones duplicadas.
+- Almacenamiento local de las suscripciones.
+- Mensajes de confirmación y error.
+
+La suscripción es simulada y no realiza envíos de correos electrónicos.
 
 ## Páginas del sitio
 
-| Página | Contenido |
+| Página | Descripción |
 |---|---|
-| [Home](index.html) | Presentación, promociones, categorías, testimonios ilustrativos y Newsletter. |
-| [Tienda](pages/tienda.html) | Catálogo de la API, filtros, incorporación al carrito y contador. |
-| [Carrito](pages/carrito.html) | Productos seleccionados, cantidades, subtotales, total y compra simulada. |
-| [Blog](pages/blog.html) | Artículos sobre tecnología, moda y audio. |
-| [Acerca de](pages/acerca-de.html) | Contexto educativo, propósito, misión, visión y valores. |
-| [Contacto](pages/contacto.html) | Formulario de consultas integrado con Formspree. |
+| [Home](index.html) | Presentación de la tienda, promociones, categorías, testimonios y newsletter. |
+| [Tienda](pages/tienda.html) | Catálogo dinámico, filtros y selección de productos. |
+| [Carrito](pages/carrito.html) | Productos seleccionados, cantidades, subtotales y finalización de compra. |
+| [Blog](pages/blog.html) | Artículos relacionados con tecnología, audio y moda. |
+| [Acerca de](pages/acerca-de.html) | Presentación, misión, visión y valores de la tienda. |
+| [Contacto](pages/contacto.html) | Formulario para el envío de consultas. |
 
 ## Estructura del proyecto
 
 ```text
 pre_entrega_roxana_beresaga/
+│
 ├── CSS/
 │   └── styles.css
+│
 ├── JS/
 │   ├── script.js
 │   ├── tienda.js
 │   └── carrito.js
+│
 ├── img/
 │   ├── banner/
-│   │   └── banner.jpg
 │   ├── pay/
-│   │   ├── app_store.jpg
-│   │   ├── google_play.jpg
-│   │   └── payment.png
 │   ├── productos/
-│   │   ├── auriculares.jpg
-│   │   ├── bermuda-gris.jpg
-│   │   ├── camisa-bicolor.jpg
-│   │   ├── pantalon-estampado.jpg
-│   │   ├── proyector.jpg
-│   │   ├── smart-tv.jpg
-│   │   ├── smartphone.jpg
-│   │   └── tablet.jpg
 │   ├── testimonios/
-│   │   ├── carlos.png
-│   │   ├── laura.png
-│   │   └── valentino.png
 │   └── banner_promocional.png
+│
 ├── pages/
 │   ├── acerca-de.html
 │   ├── blog.html
 │   ├── carrito.html
 │   ├── contacto.html
 │   └── tienda.html
+│
 ├── index.html
 └── README.md
 ```
 
-| Archivo | Responsabilidad |
+### Organización de JavaScript
+
+Separé las funcionalidades en tres archivos para facilitar la lectura y el mantenimiento del código.
+
+| Archivo | Funcionalidad |
 |---|---|
-| `CSS/styles.css` | Estilos compartidos, componentes, foco visible y adaptaciones responsive. |
-| `JS/script.js` | Newsletter de Home. Conserva un pequeño arreglo de productos de ejemplo que se imprime en consola; no alimenta el catálogo. |
-| `JS/tienda.js` | Consulta a MockAPI, validación y renderizado de productos, filtros, incorporación al carrito, contador y notificaciones. |
-| `JS/carrito.js` | Lectura y validación del carrito, cantidades, eliminación, cálculos, sincronización, gestión del foco y modal. |
+| `script.js` | Validación y registro de suscripciones al newsletter. |
+| `tienda.js` | Consumo de la API, generación de tarjetas, filtros, incorporación de productos al carrito y contador. |
+| `carrito.js` | Gestión de productos seleccionados, cantidades, eliminación, cálculos y confirmación de compra. |
 
-## API REST
+## Consumo de API REST
 
-El catálogo utiliza una solicitud **GET** al endpoint público:
+Para el catálogo utilicé MockAPI, lo que permite incorporar o actualizar productos sin modificar el código HTML de la tienda.
+
+**Endpoint:**
 
 ```text
 https://6b049df0db01cf463607720c.mockapi.io/productos
 ```
 
-La respuesta esperada es un arreglo JSON. Ejemplo ilustrativo de la estructura aceptada, no una copia garantizada de los datos actuales del servicio:
+Los productos se obtienen mediante una solicitud GET utilizando `fetch`, `async` y `await`.
+
+Ejemplo de la estructura de un producto:
 
 ```json
-[
-  {
-    "id": "1",
-    "nombre": "Smartphone",
-    "categoria": "Celulares",
-    "precio": 350,
-    "imagen": "../img/productos/smartphone.jpg"
-  }
-]
+{
+  "id": "1",
+  "nombre": "Smartphone",
+  "precio": 350000,
+  "categoria": "Celulares",
+  "imagen": "../img/productos/smartphone.jpg"
+}
 ```
 
-| Campo | Validación principal |
-|---|---|
-| `id` | Texto no vacío o número entero seguro; se normaliza a texto. |
-| `nombre` | Texto no vacío. |
-| `categoria` | Celulares, Audio, Electrónica, Tecnología o Moda. |
-| `precio` | Número finito mayor o igual a cero. |
-| `imagen` | Ruta restringida a `../img/productos/`, con nombre y extensión permitidos: jpg, jpeg, png o webp. |
+Antes de mostrar los productos, se valida la respuesta de la API, los datos de cada registro y las rutas de las imágenes. También se controla que no existan identificadores duplicados.
 
-`cargarProductos()` verifica el estado HTTP y que el JSON sea un arreglo. Filtra registros inválidos, normaliza los válidos y conserva el primero de cada identificador. Luego aplica la categoría solicitada y construye las tarjetas mediante el DOM. Las categorías sin resultados y los errores tienen mensajes específicos.
+Las tarjetas se generan dinámicamente mediante JavaScript, utilizando métodos del DOM como `createElement()` y `textContent`.
 
-La cantidad de compra se administra localmente mediante el campo `cantidad`. El sitio no crea pedidos ni modifica los productos de MockAPI.
+Durante el desarrollo amplié el catálogo de 8 a 24 productos sin necesidad de modificar la lógica de JavaScript ni la estructura de las tarjetas.
 
 ## Almacenamiento local
 
-| Clave | Contenido y comportamiento |
+Utilicé `localStorage` para conservar los datos del carrito y las suscripciones al newsletter, incluso después de actualizar la página.
+
+| Clave | Datos almacenados |
 |---|---|
-| `carrito` | Arreglo JSON de productos con `cantidad`. Se actualiza al agregar, editar o eliminar; la clave se elimina al finalizar una compra simulada. |
-| `talentoLabNewsletter` | Arreglo JSON de correos normalizados mediante `trim()` y conversión a minúsculas. Se rechazan correos inválidos y duplicados. |
+| `carrito` | Productos seleccionados y sus respectivas cantidades. |
+| `talentoLabNewsletter` | Correos electrónicos registrados. |
 
-El carrito valida registros y límites numéricos, descarta entradas de producto inválidas y agrupa identificadores repetidos. Si el JSON no puede leerse, su estructura no es válida o falla el acceso al almacenamiento, muestra un error y bloquea las operaciones afectadas. Los datos dañados no se sobrescriben como consecuencia de ese fallo. La lectura puede recuperarse cuando el almacenamiento vuelve a ser válido; no existe reparación automática del JSON corrupto.
+Los datos se almacenan en formato JSON mediante `JSON.stringify()` y se recuperan con `JSON.parse()`.
 
-El Newsletter valida el arreglo y cada correo recuperado. Ante datos dañados o un error de escritura, conserva la información almacenada y muestra un mensaje; no anuncia éxito ni limpia el campo.
+También incorporé validaciones para evitar cantidades incorrectas, errores de cálculo, registros duplicados y problemas al recuperar los datos almacenados.
 
-Los datos pertenecen al navegador y origen usados. No se sincronizan entre dispositivos y pueden perderse al borrar los datos del sitio. Las operaciones simultáneas entre pestañas no constituyen transacciones atómicas.
+Al finalizar una compra simulada, se elimina el contenido del carrito.
+
+Los datos se conservan en el navegador utilizado y no se sincronizan entre diferentes dispositivos.
 
 ## Diseño responsive
 
-- **Productos:** Flexbox con tarjetas distribuidas en cuatro, dos o una columna según el ancho.
-- **Testimonios:** CSS Grid con tres columnas que pasa a una en pantallas pequeñas.
-- **Categorías, Blog y Acerca de:** grillas adaptables a distintos dispositivos.
-- **Carrito:** resumen y productos en columnas en escritorio; disposición vertical y reorganización de tarjetas en móvil.
-- **Contacto:** campos de ancho completo y media queries que ajustan espacios y tipografía.
-- **Navegación y Newsletter:** Flexbox con redistribución y controles de ancho completo cuando corresponde.
-- **Footer:** tres columnas que pasan a una en pantallas pequeñas.
-- **Hero:** composición de escritorio con imagen de fondo y presentación móvil con imagen separada del texto.
+El sitio está diseñado para adaptarse a computadoras, tablets y celulares.
 
-El CSS incluye puntos de adaptación de 1024, 768, 600 y 480 píxeles según la sección.
+Para la distribución de los elementos utilicé Flexbox, CSS Grid y Media Queries.
+
+Algunos ejemplos de adaptación:
+
+- El catálogo pasa de cuatro columnas en escritorio a dos o una en pantallas más pequeñas.
+- Los testimonios, categorías y artículos del blog reorganizan su distribución según el dispositivo.
+- El carrito muestra los productos y el resumen de compra en columnas en escritorio y de forma vertical en dispositivos móviles.
+- Los formularios, la navegación y el footer se adaptan a diferentes tamaños de pantalla.
+- El banner principal cuenta con una presentación específica para celulares.
+
+Los puntos de adaptación utilizados en el CSS son 1024, 768, 600 y 480 píxeles, según las necesidades de cada sección.
 
 ## Accesibilidad y SEO
 
-- HTML semántico, idioma español, viewport y un encabezado principal por página.
-- Títulos y meta descriptions específicas para las seis páginas.
-- Textos alternativos en imágenes informativas; imágenes decorativas con alternativa vacía e iconos decorativos con `aria-hidden`.
-- Etiquetas asociadas a los campos y validación nativa de formularios.
-- Enlaces y botones nativos operables mediante teclado, con indicadores de foco en los componentes principales.
-- Restauración del foco en el carrito al cambiar cantidades. Al eliminar, se prioriza el producto siguiente, el anterior o «Seguir comprando», evitando desplazamientos al restaurarlo.
-- Nombre accesible del enlace al carrito con la cantidad de unidades en Tienda.
-- Regiones de estado para catálogo, errores de recuperación, notificaciones y Newsletter.
-- Modal nativo con `aria-labelledby`, `aria-describedby`, foco inicial, cierre por teclado y retorno del foco. `showModal()` impide interactuar con el contenido de fondo.
-- Color de textos secundarios de testimonios ajustado a `#596680`: contraste calculado de **5,77:1 sobre blanco** y **5,48:1 sobre `#faf9f6`**.
+Durante el desarrollo tuve en cuenta buenas prácticas de accesibilidad web y SEO, aplicando también conocimientos relacionados con mi experiencia profesional en contenidos digitales.
 
-Estas medidas no implican una certificación WCAG ni un resultado aprobado de WAVE, Axe o Lighthouse. Quedan por completar verificaciones integrales en navegador y con lectores de pantalla, además de mediciones del sitio publicado.
+### Accesibilidad
 
-## Instalación y ejecución local
+- Uso de etiquetas semánticas de HTML5.
+- Jerarquía de encabezados y un H1 por página.
+- Textos alternativos en imágenes informativas.
+- Etiquetas asociadas a los campos de los formularios.
+- Uso de atributos ARIA cuando corresponde.
+- Navegación mediante teclado e indicadores de foco.
+- Revisión del contraste de colores en distintos componentes.
+- Mensajes de estado para el catálogo, carrito y newsletter.
+- Gestión del foco al modificar o eliminar productos del carrito.
+- Modal de confirmación mediante el elemento nativo `dialog`, con posibilidad de cierre mediante teclado.
 
-1. Clonar el repositorio:
+### SEO
 
-   ```bash
-   git clone https://github.com/RoxanaBeresaga/pre_entrega_roxana_beresaga.git
-   cd pre_entrega_roxana_beresaga
-   ```
+- Títulos específicos para cada página.
+- Meta descriptions relacionadas con el contenido.
+- Estructura semántica y jerarquía de encabezados.
+- Enlaces internos entre las páginas del sitio.
+- Definición del idioma y configuración del viewport.
 
-2. Abrir la carpeta en Visual Studio Code, desde **Archivo → Abrir carpeta** o con `code .` si el comando está disponible.
-3. Usar la extensión **Live Server** de Visual Studio Code. Abrir `index.html` y seleccionar **Open with Live Server**, o pulsar **Go Live**.
-4. Navegar desde el menú a Tienda, agregar productos y abrir Carrito para probar la compra simulada. El Newsletter se encuentra en Home.
+Estas implementaciones buscan mejorar la accesibilidad y la estructura del sitio. No representan una certificación de cumplimiento de WCAG.
 
-El proyecto **no requiere npm, Node.js, frameworks ni compilación**. Live Server sirve los archivos estáticos mediante HTTP; conviene mantener el mismo origen y puerto para conservar los datos locales entre pruebas.
+## Ejecución local
 
-Se necesita conexión a Internet para MockAPI, Formspree, Google Fonts y Font Awesome. El formulario de contacto sí utiliza un servicio de envío: las pruebas de compra y Newsletter no envían correos ni pedidos.
+Para ejecutar el proyecto:
 
-## Alcance y limitaciones
+**1. Clonar el repositorio.**
 
-- Es un proyecto educativo y de presentación de conocimientos de Front-End.
-- Las compras son simuladas: no existen pagos reales, checkout de pago ni procesamiento de pedidos.
-- El Newsletter no envía correos reales; guarda registros únicamente en el navegador.
+```bash
+git clone https://github.com/RoxanaBeresaga/pre_entrega_roxana_beresaga.git
+```
+
+**2. Ingresar a la carpeta del proyecto.**
+
+```bash
+cd pre_entrega_roxana_beresaga
+```
+
+**3. Abrir el proyecto en Visual Studio Code.**
+
+```bash
+code .
+```
+
+**4. Ejecutar con Live Server.**
+
+Abrir el archivo `index.html` y seleccionar **Open with Live Server**.
+
+No es necesario instalar dependencias, utilizar npm ni realizar una compilación.
+
+Se requiere conexión a Internet para acceder a MockAPI, Formspree, Google Fonts y Font Awesome.
+
+## Alcance del proyecto
+
+El sitio fue desarrollado con fines educativos.
+
+- Las compras son simuladas y no se procesan pagos ni pedidos reales.
+- El newsletter almacena los correos localmente y no realiza envíos.
 - Los testimonios son ilustrativos.
-- No hay autenticación real, cuentas de usuario, favoritos ni seguimiento de pedidos. Las opciones no implementadas del footer son texto informativo.
-- Las imágenes de tiendas de aplicaciones y medios de pago son referencias visuales, no integraciones disponibles.
-- Los datos locales dependen del navegador, su configuración y el origen del sitio.
-- El catálogo depende de la disponibilidad y respuesta de MockAPI. El contacto depende de Formspree.
-- Validar el formato de un correo no confirma que la dirección exista ni que pertenezca a quien la ingresa.
-- La aplicación no ofrece un backend propio ni controles transaccionales para un comercio real.
+- No cuenta con autenticación ni gestión de usuarios.
+- Los medios de pago y las tiendas de aplicaciones se muestran como referencias visuales.
+- El formulario de contacto utiliza Formspree para el envío de consultas.
+- El proyecto no cuenta con un backend propio.
 
-## Posibles mejoras futuras
+## Próximas mejoras
 
-Las siguientes mejoras son opcionales y **todavía no están implementadas**:
+Como parte de una futura evolución del proyecto, me gustaría incorporar:
 
 - Optimización de imágenes y banners.
-- Carrusel accesible de banners promocionales.
 - Buscador de productos.
 - Ordenamiento por precio.
 - Paginación del catálogo.
-- Inicio de sesión con una arquitectura de autenticación adecuada.
+- Carrusel de promociones.
 - Lista de favoritos.
+- Registro e inicio de sesión de usuarios.
+- Desarrollo de un backend propio.
 
 ## Autora
 
@@ -261,4 +299,8 @@ Las siguientes mejoras son opcionales y **todavía no están implementadas**:
 
 Proyecto Final Front-End — Talento Tech 2026.
 
-[Perfil de GitHub de RoxanaBeresaga](https://github.com/RoxanaBeresaga)
+Cuento con formación en programación Java y experiencia profesional en gestión de contenidos digitales, CMS, SEO y accesibilidad web.
+
+Este proyecto forma parte de mi formación en desarrollo de software y me permitió integrar conocimientos de programación con el diseño y la implementación de interfaces web.
+
+[Mi perfil de GitHub](https://github.com/RoxanaBeresaga)
