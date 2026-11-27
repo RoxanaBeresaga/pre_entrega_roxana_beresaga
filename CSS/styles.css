@@ -1,6 +1,4 @@
-/* ========================================
-Variables y paleta de colores
-======================================== */
+/* Variables y paleta de colores */
 :root {
   --color-primario: #315b70;
   --color-secundario: #6c7898;
@@ -11,18 +9,14 @@ Variables y paleta de colores
   --color-lavanda: #eae4f5;
   --color-rosa: #f7e5e7;
 }
-/* ========================================
-Estilos generales
-======================================== */
+/* Estilos generales */
 body {
   margin: 0;
   font-family: "Roboto", Arial, sans-serif;
   background-color: #ffffff;
   color: var(--color-texto);
 }
-/* ========================================
-Encabezado y navegación
-======================================== */
+/* Encabezado y navegación */
 header {
   background-color: var(--color-primario);
   padding: 18px 24px;
@@ -66,9 +60,7 @@ nav a {
 .fa-shopping-cart {
   font-size: 20px;
 }
-/* ========================================
-Pie de página
-======================================== */
+/* Pie de página */
 footer {
   background-color: #333333;
   color: #ffffff;
@@ -82,9 +74,7 @@ footer ul {
   list-style: none;
   padding: 0;
 }
-/* ========================================
-Hero: imagen de fondo y contenido
-======================================== */
+/* Hero: imagen de fondo y contenido */
 .hero {
   background-color: var(--color-fondo);
   background-image: url("../img/banner/banner.jpg");
@@ -99,9 +89,7 @@ Hero: imagen de fondo y contenido
   padding: 40px 60px;
   box-sizing: border-box;
 }
-/* ========================================
-Contenedor del contenido promocional
-======================================== */
+/* Contenedor del contenido promocional */
 .hero-content {
   width: 40%;
   display: flex;
@@ -110,9 +98,7 @@ Contenedor del contenido promocional
   text-align: right;
   gap: 10px;
 }
-/* ========================================
-Textos del banner principal
-======================================== */
+/* Textos del banner principal */
 .hero-content .hero-subtitulo {
   color: var(--color-primario);
   font-size: 16px;
@@ -136,9 +122,7 @@ Textos del banner principal
   margin: 0;
   line-height: 1.5;
 }
-/* ========================================
-Botón principal de compra
-======================================== */
+/* Botón principal de compra */
 .boton-comprar {
   display: inline-block;
   background-color: var(--color-acento);
@@ -162,9 +146,7 @@ Botón principal de compra
   outline: 3px solid var(--color-primario);
   outline-offset: 3px;
 }
-/* ========================================
-Sección de productos
-======================================== */
+/* Sección de productos */
 .productos {
   padding: 60px 40px;
   text-align: center;
@@ -180,9 +162,7 @@ Sección de productos
   color: var(--color-secundario);
   margin: 0 0 36px;
 }
-/* ========================================
-Distribución de tarjetas con Flexbox
-======================================== */
+/* Distribución de tarjetas con Flexbox */
 .contenedor-productos {
   display: flex;
   flex-wrap: wrap;
@@ -191,9 +171,7 @@ Distribución de tarjetas con Flexbox
   max-width: 1200px;
   margin: 0 auto;
 }
-/* ========================================
-Tarjetas individuales
-======================================== */
+/* Tarjetas individuales */
 .producto {
   flex: 0 1 calc((100% - 72px) / 4);
   min-width: 0;
@@ -227,9 +205,7 @@ Tarjetas individuales
   font-size: 18px;
   font-weight: 700;
 }
-/* ========================================
-Botón Agregar
-======================================== */
+/* Botón para agregar productos */
 .producto button {
   margin-top: auto;
   padding: 10px 16px;
@@ -248,9 +224,7 @@ Botón Agregar
   outline: 3px solid var(--color-primario);
   outline-offset: 3px;
 }
-/* ========================================
-Banner promocional secundario
-======================================== */
+/* Banner promocional secundario */
 .banner-promocional {
   background-image: url("../img/banner_promocional.png");
   background-size: cover;
@@ -266,9 +240,7 @@ Banner promocional secundario
   gap: 14px;
   text-align: center;
 }
-/* ========================================
-Contenido del banner promocional
-======================================== */
+/* Contenido del banner promocional */
 .banner-contenido {
   display: flex;
   flex-direction: column;
@@ -327,9 +299,7 @@ Contenido del banner promocional
   outline: 3px solid var(--color-primario);
   outline-offset: 3px;
 }
-/* ========================================
-Sección de testimonios
-======================================== */
+/* Sección de testimonios */
 .testimonios {
   padding: 60px 40px;
   background-color: var(--color-fondo);
@@ -344,9 +314,7 @@ Sección de testimonios
   color: #596680;
   margin: 0 0 36px;
 }
-/* ========================================
-Distribución de testimonios con CSS Grid
-======================================== */
+/* Distribución de testimonios con CSS Grid */
 .contenedor-testimonios {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -354,9 +322,7 @@ Distribución de testimonios con CSS Grid
   max-width: 1200px;
   margin: 0 auto;
 }
-/* ========================================
-Tarjetas individuales de testimonios
-======================================== */
+/* Tarjetas individuales de testimonios */
 .testimonio {
   display: flex;
   flex-direction: column;
@@ -394,13 +360,9 @@ Tarjetas individuales de testimonios
   font-size: 14px;
   margin: 0;
 }
-/* ========================================
-Testimonios en pantallas pequeñas
-======================================== */
 
-/* ========================================
-Sección Newsletter
-======================================== */
+
+/* Sección del newsletter */
 .newsletter {
   padding: 60px 40px;
   background-color: var(--color-primario);
@@ -416,9 +378,7 @@ Sección Newsletter
   margin: 0 0 30px;
   line-height: 1.5;
 }
-/* ========================================
-Formulario del Newsletter
-======================================== */
+/* Formulario del newsletter */
 .newsletter form {
   display: flex;
   flex-wrap: wrap;
@@ -464,13 +424,9 @@ Formulario del Newsletter
   outline: 3px solid #ffffff;
   outline-offset: 3px;
 }
-/* ========================================
-Newsletter en dispositivos móviles
-======================================== */
 
-/* ========================================
-Footer: distribución con CSS Grid
-======================================== */
+
+/* Footer: distribución con CSS Grid */
 .footer-contenido {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -478,9 +434,7 @@ Footer: distribución con CSS Grid
   max-width: 1200px;
   margin: 0 auto;
 }
-/* ========================================
-Títulos y textos del footer
-======================================== */
+/* Títulos y textos del footer */
 .footer-contenido h2 {
   color: #ffffff;
   font-size: 20px;
@@ -492,9 +446,7 @@ Títulos y textos del footer
   line-height: 1.7;
   margin: 0 0 12px;
 }
-/* ========================================
-Enlaces del footer
-======================================== */
+/* Enlaces del footer */
 .footer-contenido ul {
   list-style: none;
   padding: 0;
@@ -513,9 +465,7 @@ Enlaces del footer
   color: #ffffff;
   text-decoration: underline;
 }
-/* ========================================
-Imágenes de descarga de aplicaciones
-======================================== */
+/* Imágenes de descarga de aplicaciones */
 .footer-app-imagenes {
   display: flex;
   flex-wrap: wrap;
@@ -529,9 +479,7 @@ Imágenes de descarga de aplicaciones
   object-fit: contain;
   border-radius: 4px;
 }
-/* ========================================
-Medios de pago
-======================================== */
+/* Medios de pago */
 .footer-contenido .footer-pagos-titulo {
   margin-bottom: 12px;
 }
@@ -541,9 +489,7 @@ Medios de pago
   height: auto;
   display: block;
 }
-/* ========================================
-Derechos de autor
-======================================== */
+/* Derechos de autor */
 .footer-copyright {
   max-width: 1200px;
   margin: 40px auto 0;
@@ -553,13 +499,9 @@ Derechos de autor
   font-size: 14px;
   text-align: center;
 }
-/* ========================================
-Footer responsive
-======================================== */
 
-/* ========================================
-Redes sociales del Footer
-======================================== */
+
+/* Redes sociales del footer */
 .footer-redes {
   margin-top: 24px;
 }
@@ -597,17 +539,11 @@ Redes sociales del Footer
   background-position: center;
   background-repeat: no-repeat;
 }
-/* ========================================
-Responsive: tablets y pantallas medianas
-======================================== */
 
-/* ========================================
-Responsive: celulares
-======================================== */
 
-/* ========================================
-   Responsive: tablets y pantallas medianas
-======================================== */
+
+
+/* Responsive: tablets y pantallas medianas */
 @media (max-width: 1024px) {
   .navbar {
     flex-wrap: wrap;
@@ -644,9 +580,7 @@ Responsive: celulares
   }
 }
 
-/* ========================================
-   Responsive: tablets pequeñas
-======================================== */
+/* Responsive: tablets pequeñas */
 @media (max-width: 768px) {
   .contenedor-testimonios {
     grid-template-columns: 1fr;
@@ -666,9 +600,7 @@ Responsive: celulares
   }
 }
 
-/* ========================================
-   Responsive: celulares
-======================================== */
+/* Responsive: celulares */
 @media (max-width: 600px) {
   img {
     max-width: 100%;
@@ -777,9 +709,7 @@ Responsive: celulares
   }
 }
 
-/* ========================================
-   Página de Contacto
-======================================== */
+/* Página de Contacto */
 
 .pagina-contacto {
   background-color: var(--color-fondo);
@@ -881,9 +811,7 @@ Responsive: celulares
   text-decoration: underline;
 }
 
-/* ========================================
-   Contacto responsive: celulares
-======================================== */
+/* Contacto responsive: celulares */
 
 @media (max-width: 600px) {
   .pagina-contacto .contacto-main {
@@ -899,7 +827,7 @@ Responsive: celulares
   }
 }
 
-/* SECCIÓN DE CATEGORÍAS - HOME */
+/* Categorías de Home */
 
 .categorias {
   padding: 50px 20px;
@@ -963,7 +891,7 @@ Responsive: celulares
   color: #0066cc;
 }
 
-/* RESPONSIVE - CATEGORÍAS */
+/* Categorías en pantallas pequeñas */
 
 @media (max-width: 768px) {
   .contenedor-categorias {
@@ -980,7 +908,7 @@ Responsive: celulares
   }
 }
 
-/* ENCABEZADO DE TIENDA */
+/* Encabezado de la tienda */
 
 .encabezado-tienda {
   background-color: #eaf2f8;
@@ -1000,7 +928,7 @@ Responsive: celulares
   margin: 0;
 }
 
-/* RESPONSIVE - ENCABEZADO TIENDA */
+/* Encabezado de la tienda en pantallas pequeñas */
 
 @media (max-width: 768px) {
   .encabezado-tienda {
@@ -1016,7 +944,7 @@ Responsive: celulares
   }
 }
 
-/* FILTROS DE CATEGORÍAS - TIENDA */
+/* Filtros de categorías de la tienda */
 
 .filtros-categorias {
   display: flex;
@@ -1050,7 +978,7 @@ Responsive: celulares
   color: #ffffff;
 }
 
-/* RESPONSIVE - FILTROS DE CATEGORÍAS */
+/* Filtros de categorías en celulares */
 
 @media (max-width: 480px) {
   .filtros-categorias {
@@ -1064,7 +992,7 @@ Responsive: celulares
     padding: 10px;
   }
 }
-/* NOTIFICACIÓN DEL CARRITO */
+/* Notificación del carrito */
 
 .notificacion {
   position: fixed;
@@ -1097,7 +1025,7 @@ Responsive: celulares
   }
 }
 
-/* CONTADOR DEL CARRITO */
+/* Contador del carrito */
 
 .carrito-enlace {
   position: relative;
@@ -1121,7 +1049,7 @@ Responsive: celulares
   justify-content: center;
 }
 
-/* CARRITO DE COMPRAS */
+/* Carrito de compras */
 
 .carrito {
   padding: 50px 20px;
@@ -1194,7 +1122,7 @@ Responsive: celulares
   text-decoration: underline;
 }
 
-/* CONFIRMACIÓN DE COMPRA */
+/* Confirmación de compra */
 
 .modal-compra {
   box-sizing: border-box;
@@ -1286,7 +1214,7 @@ Responsive: celulares
   outline-offset: 3px;
 }
 
-/* CARRITO RESPONSIVE */
+/* Carrito en pantallas pequeñas */
 
 @media (max-width: 768px) {
   .contenedor-carrito {
@@ -1299,7 +1227,7 @@ Responsive: celulares
   }
 }
 
-/* PRODUCTOS DEL CARRITO */
+/* Productos del carrito */
 
 .producto-carrito {
   display: flex;
@@ -1348,7 +1276,7 @@ Responsive: celulares
   color: #0066cc;
   text-decoration: underline;
 }
-/* SELECTOR DE CANTIDADES DEL CARRITO */
+/* Selector de cantidades del carrito */
 
 .selector-cantidad {
   display: inline-flex;
@@ -1379,7 +1307,7 @@ Responsive: celulares
   background-color: #eaf2f8;
 }
 
-/* SUBTOTAL DE CADA PRODUCTO */
+/* Subtotal de cada producto */
 
 .producto-carrito-subtotal {
   text-align: right;
@@ -1397,7 +1325,7 @@ Responsive: celulares
   color: #2d5669;
 }
 
-/* BOTÓN ELIMINAR PRODUCTO */
+/* Botón eliminar producto */
 
 .btn-eliminar {
   display: flex;
@@ -1418,7 +1346,7 @@ Responsive: celulares
   color: #c62828;
 }
 
-/* RESPONSIVE - PRODUCTOS DEL CARRITO */
+/* Productos del carrito en celulares */
 
 @media (max-width: 600px) {
   .carrito-productos,
@@ -1451,7 +1379,7 @@ Responsive: celulares
   }
 }
 
-/* CARRITO VACÍO */
+/* Carrito vacío */
 
 .carrito-vacio {
   text-align: center;
@@ -1476,16 +1404,14 @@ Responsive: celulares
   line-height: 1.6;
 }
 
-/* BOTÓN FINALIZAR COMPRA DESHABILITADO */
+/* Botón finalizar compra deshabilitado */
 
 #finalizar-compra:disabled {
   background-color: #d1d5db;
   color: #4b5563;
   cursor: not-allowed;
 }
-/* ========================================
-   Blog y Acerca de: navegación y footer
-======================================== */
+/* Foco de navegación en Blog y Acerca de */
 .pagina-blog header a:focus-visible,
 .pagina-blog main a:focus-visible,
 .pagina-acerca header a:focus-visible,
@@ -1494,9 +1420,7 @@ Responsive: celulares
   outline-offset: 5px;
 }
 
-/* ========================================
-   Blog: tarjetas de artículos
-======================================== */
+/* Blog: tarjetas de artículos */
 .blog {
   padding: 50px 20px;
 }
@@ -1549,9 +1473,7 @@ Responsive: celulares
   margin-bottom: 0;
 }
 
-/* ========================================
-   Acerca de: presentación, propósito y valores
-======================================== */
+/* Acerca de: presentación, propósito y valores */
 .acerca-contenido {
   max-width: 1200px;
   margin: 0 auto;
@@ -1615,9 +1537,7 @@ Responsive: celulares
   margin: 16px 0 12px;
 }
 
-/* ========================================
-   Blog y Acerca de: tablets y celulares
-======================================== */
+/* Blog y Acerca de: tablets y celulares */
 @media (max-width: 1024px) {
   .contenedor-blog {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1653,7 +1573,7 @@ Responsive: celulares
   }
 }
 
-/* Aclaraciones y estados del footer y Newsletter */
+/* Aclaraciones del footer y estados del newsletter */
 .footer-opcion {
   color: #dddddd;
   font-size: 14px;
@@ -1683,7 +1603,7 @@ Responsive: celulares
   border: 2px solid #a82020;
 }
 
-/* Accesibilidad: anuncios y foco de los controles del carrito */
+/* Accesibilidad: anuncios, foco y errores del carrito */
 .solo-lectores {
   position: absolute;
   width: 1px;
