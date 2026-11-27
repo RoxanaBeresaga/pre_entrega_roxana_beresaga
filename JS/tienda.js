@@ -1,4 +1,4 @@
-
+// URL de la API de productos.
 const API_URL = "https://6b049df0db01cf463607720c.mockapi.io/productos";
 
 const contenedorProductos = document.querySelector(".contenedor-productos");
@@ -7,6 +7,7 @@ const tituloProductos = document.querySelector(".productos h2");
 const mensajeCatalogo = document.getElementById("estado-catalogo");
 const errorCarrito = document.getElementById("error-carrito");
 
+// Mostrar los mensajes de estado del catálogo.
 function anunciarCatalogo(mensaje) {
   if (mensajeCatalogo.textContent !== mensaje) mensajeCatalogo.textContent = mensaje;
 }
@@ -14,7 +15,7 @@ function anunciarCatalogo(mensaje) {
 let productos = [];
 let estadoCatalogo = "cargando";
 
-// Comprobar los datos necesarios para mostrar y calcular un producto.
+// Validar los datos del producto.
 function esProductoValido(producto) {
   return producto !== null &&
     typeof producto === "object" &&
@@ -30,7 +31,7 @@ function esProductoValido(producto) {
     /^\.\.\/img\/productos\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/.test(producto.imagen);
 }
 
-// Mantener el mismo formato de identificador y cantidad en ambas páginas.
+// Normalizar el identificador y la cantidad.
 function normalizarProducto(producto) {
   return {
     ...producto,
@@ -41,7 +42,7 @@ function normalizarProducto(producto) {
   };
 }
 
-// Recuperar y validar los productos almacenados.
+// Recuperar y validar el carrito.
 function obtenerCarrito() {
   try {
     const datos = JSON.parse(localStorage.getItem("carrito"));
@@ -56,7 +57,7 @@ function obtenerCarrito() {
       .map(normalizarProducto)
       .filter((producto) => Number.isFinite(producto.precio * producto.cantidad));
 
-    // Agrupar registros antiguos con el mismo identificador.
+    // Agrupar productos con el mismo identificador.
     const agrupados = [];
     productosValidos.forEach((producto) => {
       const existente = agrupados.find((item) => item.id === producto.id);
@@ -78,7 +79,7 @@ function obtenerCarrito() {
   }
 }
 
-// Comprobar también que la suma de varios productos sea válida.
+// Validar los totales del carrito.
 function tieneTotalesValidos(lista) {
   const cantidadTotal = lista.reduce((total, producto) => total + producto.cantidad, 0);
   const importeTotal = lista.reduce(
@@ -87,7 +88,7 @@ function tieneTotalesValidos(lista) {
   return Number.isSafeInteger(cantidadTotal) && Number.isFinite(importeTotal);
 }
 
-// Actualizar la interfaz solo cuando el guardado se haya completado.
+// Guardar el carrito en localStorage.
 function guardarCarrito(lista) {
   try {
     localStorage.setItem("carrito", JSON.stringify(lista));
@@ -99,7 +100,7 @@ function guardarCarrito(lista) {
   }
 }
 
-// 1. Obtener los productos desde MockAPI
+// Obtener los productos desde MockAPI.
 
 async function cargarProductos() {
   estadoCatalogo = "cargando";
@@ -117,13 +118,14 @@ async function cargarProductos() {
       throw new Error("La API no devolvió una lista de productos.");
     }
     productos = datos.filter(esProductoValido).map(normalizarProducto);
-    // Conservar el primer producto válido de cada identificador.
+
+    // Evitar productos duplicados en el catálogo.
     productos = productos.filter((producto, indice, lista) =>
       lista.findIndex((item) => item.id === producto.id) === indice
     );
     estadoCatalogo = "listo";
 
-    // Obtener la categoría seleccionada desde Home
+    // Obtener la categoría seleccionada desde Home.
     const parametros = new URLSearchParams(window.location.search);
     const categoria = parametros.get("categoria") || "Todos";
 
@@ -138,7 +140,7 @@ async function cargarProductos() {
   }
 }
 
-// 2. Generar las tarjetas dinámicamente
+// Generar las tarjetas de los productos.
 
 function mostrarProductos(listaProductos) {
   contenedorProductos.innerHTML = "";
@@ -185,7 +187,7 @@ function mostrarProductos(listaProductos) {
   activarBotonesCarrito();
 }
 
-// 3. Filtrar productos por categoría
+// Filtrar productos por categoría.
 
 function filtrarProductos(categoria) {
   if (estadoCatalogo !== "listo") return;
@@ -207,7 +209,7 @@ function filtrarProductos(categoria) {
     anunciarCatalogo(`${categoria}: ${cantidad} ${cantidad === 1 ? "producto disponible" : "productos disponibles"}.`);
   }
 
-  // Actualizar el botón seleccionado
+  // Actualizar el estado del filtro seleccionado.
 
   botonesFiltros.forEach((boton) => {
     const seleccionado = boton.dataset.categoria === categoria;
@@ -217,7 +219,7 @@ function filtrarProductos(categoria) {
   });
 }
 
-// 4. Detectar clics en los filtros
+// Gestionar los eventos de los filtros.
 
 botonesFiltros.forEach((boton) => {
   boton.addEventListener("click", () => {
@@ -225,7 +227,7 @@ botonesFiltros.forEach((boton) => {
   });
 });
 
-// 5. Agregar productos al carrito
+// Agregar productos al carrito.
 
 function activarBotonesCarrito() {
   const botonesAgregar = document.querySelectorAll(".btn-agregar");
@@ -272,13 +274,14 @@ function activarBotonesCarrito() {
   });
 }
 
-// 6. Iniciar la carga de productos
+// Iniciar la carga de productos.
 
 cargarProductos();
 
 let temporizadorNotificacion;
 let temporizadorAnuncio;
 
+// Mostrar la notificación al agregar un producto.
 function mostrarNotificacion(nombreProducto) {
   const notificacion = document.getElementById("notificacion");
 
@@ -300,6 +303,7 @@ function mostrarNotificacion(nombreProducto) {
   }, 3000);
 }
 
+// Actualizar el contador de productos del carrito.
 function actualizarContadorCarrito() {
   const carrito = obtenerCarrito();
 
@@ -329,7 +333,7 @@ function actualizarContadorCarrito() {
 
 actualizarContadorCarrito();
 
-// Actualizar solo el contador al volver o recibir cambios de otra pestaña.
+// Actualizar el contador al navegar o modificar el almacenamiento.
 window.addEventListener("pageshow", actualizarContadorCarrito);
 
 window.addEventListener("storage", (evento) => {
