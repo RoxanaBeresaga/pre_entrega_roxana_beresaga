@@ -14,12 +14,12 @@ cerrarConfirmacion.addEventListener("click", () => {
   confirmacionCompra.close();
 });
 
-// Escape también dispara close mediante el comportamiento nativo del dialog.
+// Restaurar el foco al cerrar el modal.
 confirmacionCompra.addEventListener("close", () => {
   seguirComprando.focus();
 });
 
-// Comprobar los datos necesarios para mostrar y calcular un producto.
+// Validar los datos del producto.
 function esProductoValido(producto) {
   return producto !== null &&
     typeof producto === "object" &&
@@ -35,7 +35,7 @@ function esProductoValido(producto) {
     /^\.\.\/img\/productos\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/.test(producto.imagen);
 }
 
-// Mantener el mismo formato de identificador y cantidad en ambas páginas.
+// Normalizar el identificador y la cantidad.
 function normalizarProducto(producto) {
   return {
     ...producto,
@@ -46,7 +46,7 @@ function normalizarProducto(producto) {
   };
 }
 
-// Recuperar y validar los productos almacenados.
+// Recuperar y validar el carrito.
 function obtenerCarrito() {
   try {
     const datos = JSON.parse(localStorage.getItem("carrito"));
@@ -61,7 +61,7 @@ function obtenerCarrito() {
       .map(normalizarProducto)
       .filter((producto) => Number.isFinite(producto.precio * producto.cantidad));
 
-    // Agrupar registros antiguos con el mismo identificador.
+  // Agrupar productos con el mismo identificador.
     const agrupados = [];
     productosValidos.forEach((producto) => {
       const existente = agrupados.find((item) => item.id === producto.id);
@@ -83,7 +83,7 @@ function obtenerCarrito() {
   }
 }
 
-// Comprobar también que la suma de varios productos sea válida.
+// Validar los totales del carrito.
 function tieneTotalesValidos(lista) {
   const cantidadTotal = lista.reduce((total, producto) => total + producto.cantidad, 0);
   const importeTotal = lista.reduce(
@@ -92,7 +92,7 @@ function tieneTotalesValidos(lista) {
   return Number.isSafeInteger(cantidadTotal) && Number.isFinite(importeTotal);
 }
 
-// Actualizar la interfaz solo cuando el guardado se haya completado.
+// Guardar el carrito en localStorage.
 function guardarCarrito(lista) {
   try {
     localStorage.setItem("carrito", JSON.stringify(lista));
@@ -111,7 +111,7 @@ const errorCarrito = document.getElementById("error-carrito");
 
 // Los datos normalizados se guardan al realizar un cambio.
 
-// 1. Mostrar los productos del carrito
+// Mostrar los productos del carrito.
 
 function mostrarCarrito() {
   const activo = document.activeElement;
@@ -137,7 +137,7 @@ function mostrarCarrito() {
     (destino || seguirComprando).focus({ preventScroll: true });
   }
 }
-
+// Generar las tarjetas de los productos.
 function renderizarCarrito() {
   listaCarrito.innerHTML = "";
   const mensaje = errorRecuperacion
@@ -218,7 +218,7 @@ function renderizarCarrito() {
   });
 }
 
-// 2. Actualizar el resumen de compra
+// Actualizar el resumen de compra.
 
 function actualizarResumen() {
   const cantidadTotal = carrito.reduce(
@@ -247,7 +247,7 @@ function actualizarResumen() {
   finalizarCompra.disabled = errorRecuperacion || carrito.length === 0 || !tieneTotalesValidos(carrito);
 }
 
-// 3. Modificar la cantidad de los productos
+// Modificar la cantidad de un producto.
 
 function cambiarCantidad(id, cambio) {
   if (!sincronizarCarrito()) return;
@@ -275,7 +275,7 @@ function cambiarCantidad(id, cambio) {
   actualizarResumen();
 }
 
-// Eliminar un producto del carrito
+// Eliminar un producto del carrito.
 
 function eliminarProducto(id) {
   if (!sincronizarCarrito()) return;
@@ -292,7 +292,7 @@ function eliminarProducto(id) {
   actualizarResumen();
 }
 
-// 4. Detectar clics en los botones del carrito
+// Gestionar los eventos del carrito.
 
 listaCarrito.addEventListener("click", (evento) => {
   const boton = evento.target.closest("button");
@@ -312,7 +312,7 @@ listaCarrito.addEventListener("click", (evento) => {
   }
 });
 
-// 5. Finalizar la compra
+// Finalizar la compra.
 
 finalizarCompra.addEventListener("click", () => {
   if (!sincronizarCarrito()) return;
@@ -337,7 +337,7 @@ finalizarCompra.addEventListener("click", () => {
 mostrarCarrito();
 actualizarResumen();
 
-// Leer los datos actuales sin escribir en localStorage.
+// Sincronizar el estado del carrito.
 function sincronizarCarrito() {
   const datos = obtenerCarrito();
   errorRecuperacion = datos === null;
@@ -347,6 +347,7 @@ function sincronizarCarrito() {
   return datos !== null;
 }
 
+// Actualizar el carrito al navegar o modificar el almacenamiento.
 window.addEventListener("pageshow", sincronizarCarrito);
 
 window.addEventListener("storage", (evento) => {
